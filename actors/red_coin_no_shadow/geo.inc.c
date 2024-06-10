@@ -1,0 +1,24 @@
+
+// 0x16000328
+const GeoLayout red_coin_no_shadow_geo[] = {
+      GEO_SWITCH_CASE(16, geo_switch_anim_state),
+      GEO_OPEN_NODE(),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red0),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red1),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red2),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red3),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red4),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red5),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red6),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red7),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red8),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red9),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red10),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red11),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red12),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red13),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red14),
+         GEO_DISPLAY_LIST(LAYER_ALPHA, red15),
+      GEO_CLOSE_NODE(),
+   GEO_END(),
+};
