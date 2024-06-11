@@ -5,8 +5,8 @@ function on_mario_update(m)
     end
 
     if m.action == ACT_GROUND_POUND and m.input & INPUT_B_PRESSED ~= 0 then
-        mario_set_forward_vel(m, 40.0)
-        m.vel.y = 35.0
+        m.forwardVel = 48.0
+        m.vel.y = 24.0
         m.faceAngle.y = m.intendedYaw
         set_mario_action(m, ACT_DIVE, 0)
     end
