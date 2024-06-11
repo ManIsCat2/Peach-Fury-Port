@@ -123,11 +123,6 @@ u8 hmc_dl_CGGRASS_i4[] = {
 	#include "levels/hmc/CGGRASS.i4.inc.c"
 };
 
-Gfx hmc_dl_SmoothStone_i4_aligner[] = {gsSPEndDisplayList()};
-u8 hmc_dl_SmoothStone_i4[] = {
-	#include "levels/hmc/SmoothStone.i4.inc.c"
-};
-
 Gfx hmc_dl_ScoreAttackManInd_i8_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_ScoreAttackManInd_i8[] = {
 	#include "levels/hmc/ScoreAttackManInd.i8.inc.c"
@@ -243,11 +238,6 @@ u8 hmc_dl_grass_toplight_i4[] = {
 	#include "levels/hmc/grass_toplight.i4.inc.c"
 };
 
-Gfx hmc_dl_segment2_05800_rgba16__10__i4_aligner[] = {gsSPEndDisplayList()};
-u8 hmc_dl_segment2_05800_rgba16__10__i4[] = {
-	#include "levels/hmc/segment2.05800.rgba16__10_.i4.inc.c"
-};
-
 Gfx hmc_dl_gctr_stcompiled5_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_gctr_stcompiled5_ci8[] = {
 	#include "levels/hmc/gctr_stcompiled5.ci8.inc.c"
@@ -308,11 +298,6 @@ u8 hmc_dl__9F9E088CCD7A1D772F383D1128E127BA_i4[] = {
 	#include "levels/hmc/_9F9E088CCD7A1D772F383D1128E127BA.i4.inc.c"
 };
 
-Gfx hmc_dl_D000_iwakabe_08_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 hmc_dl_D000_iwakabe_08_rgba16[] = {
-	#include "levels/hmc/D000_iwakabe_08.rgba16.inc.c"
-};
-
 Gfx hmc_dl_Peachy_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_Peachy_ci4[] = {
 	#include "levels/hmc/Peachy.ci4.inc.c"
@@ -356,11 +341,6 @@ u8 hmc_dl_KKIIDDZZ_DAT_826__p00_i8[] = {
 Gfx hmc_dl__3dlbrick_i4_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl__3dlbrick_i4[] = {
 	#include "levels/hmc/_3dlbrick.i4.inc.c"
-};
-
-Gfx hmc_dl_EARTHWORM_JIM_3D_B545DC3B_0_2_all_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 hmc_dl_EARTHWORM_JIM_3D_B545DC3B_0_2_all_rgba16[] = {
-	#include "levels/hmc/EARTHWORM_JIM_3D_B545DC3B_0_2_all.rgba16.inc.c"
 };
 
 Gfx hmc_dl_KKIIDDZZ_DAT_2884__p00_ci4_aligner[] = {gsSPEndDisplayList()};
@@ -463,11 +443,6 @@ u8 hmc_dl_GZLE01_8893b387_14__2__pal_rgba16[] = {
 	#include "levels/hmc/GZLE01_8893b387_14__2_.rgba16.pal"
 };
 
-Gfx hmc_dl_stars_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 hmc_dl_stars_rgba16[] = {
-	#include "levels/hmc/stars.rgba16.inc.c"
-};
-
 Gfx hmc_dl_BRIDGEWALL_ci4_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_BRIDGEWALL_ci4[] = {
 	#include "levels/hmc/BRIDGEWALL.ci4.inc.c"
@@ -501,11 +476,6 @@ u8 hmc_dl__08B103753C16524EC9F5466267967F4E_pal_rgba16[] = {
 Gfx hmc_dl_sand__6__i4_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_sand__6__i4[] = {
 	#include "levels/hmc/sand__6_.i4.inc.c"
-};
-
-Gfx hmc_dl_BOMBERMAN_HERO_9600E8A3_2_0_5661A3B1_ciByRGBA_i4_aligner[] = {gsSPEndDisplayList()};
-u8 hmc_dl_BOMBERMAN_HERO_9600E8A3_2_0_5661A3B1_ciByRGBA_i4[] = {
-	#include "levels/hmc/BOMBERMAN_HERO_9600E8A3_2_0_5661A3B1_ciByRGBA.i4.inc.c"
 };
 
 Gfx hmc_dl_tile1_ci4_aligner[] = {gsSPEndDisplayList()};
