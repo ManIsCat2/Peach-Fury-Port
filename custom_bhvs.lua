@@ -1,4 +1,14 @@
-local towerPos = { 1361.0, 861.0, 1111.0, 361.0, 611.0, -139.0, 111.0 }
+---@param parent Object
+---@param model ModelExtendedId
+---@param behaviorId BehaviorId
+local function spawn_object(parent, model, behaviorId)
+    local obj = spawn_non_sync_object(behaviorId, model, 0, 0, 0, nil)
+    if not obj then return nil end
+
+    obj_copy_pos_and_angle(obj, parent)
+    return obj
+end
+
 
 function goombastar(o)
     if (o.oBehParams == 6) then
@@ -89,6 +99,45 @@ function diagshroom(o)
         end
         m.peakHeight = -100000.0
     end
+end
+
+MODEL_BBARREL = smlua_model_util_get_id("bbarrel_geo")
+
+function bbarrelcode(o)
+    o.collisionData = smlua_collision_util_get("bbarrel_collision")
+    if o.oAction == 0 then
+        if o.oTimer == 0 then
+            o.oFaceAngleYaw = math.random(0, 65535)
+        end
+        if cur_obj_is_mario_ground_pounding_platform() == 1 then
+            o.oAction = o.oAction + 1
+            o.oTimer = 0
+        end
+    end
+
+    local MINSUB = 3
+
+    if o.oAction == 1 then
+        o.header.gfx.scale.y = o.header.gfx.scale.x - MINSUB
+        o.header.gfx.scale.x = math.sqrt(1 / o.header.gfx.scale.y)
+        o.header.gfx.scale.z = o.header.gfx.scale.x
+        if o.header.gfx.scale.y < (MINSUB * 4) then
+            obj_mark_for_deletion(o)
+            spawn_mist_particles_variable(0, 0, 46)
+            spawn_triangle_break_particles(30, 138, 3.0, 4)
+            local behParams2ndByte = o.oBehParams2ndByte
+            if behParams2ndByte == 0 then
+                spawn_object(o, 0, id_bhvTemporaryYellowCoin)
+            elseif behParams2ndByte == 1 then
+                spawn_object(o, 0, id_bhvThreeCoinsSpawn)
+            elseif behParams2ndByte == 2 then
+                spawn_object(o, E_MODEL_BLUE_COIN, id_bhvMrIBlueCoin)
+            elseif behParams2ndByte == 3 then
+                spawn_object(o, 0, id_bhvTenCoinsSpawn)
+            end
+        end
+    end
+    load_object_collision_model()
 end
 
 

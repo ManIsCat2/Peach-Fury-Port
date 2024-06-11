@@ -30,3 +30,13 @@ const BehaviorScript bhvBounceShroom[] = {
         CALL_NATIVE(diagshroom),
     END_LOOP(),
 };
+
+const BehaviorScript bhvBbarrel[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_FLOAT(oDrawingDistance, 32000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bbarrelcode),
+    END_LOOP(),
+};

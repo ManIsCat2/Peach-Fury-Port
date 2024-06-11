@@ -24,6 +24,7 @@ gServerSettings.stayInLevelAfterStar = 1
 
 audio_0A = audio_stream_load("0A_domeL.mp3")
 audio_02 = audio_stream_load("02_stardanceleft.mp3")
+audio_1C = audio_sample_load("1C.mp3")
 audio_stream_set_looping(audio_0A, true)
 audio_stream_play(audio_0A, true, 1)
 
