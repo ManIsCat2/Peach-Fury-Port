@@ -16,7 +16,7 @@ gLevelValues.disableActs = true
 -- server values --
 -------------------
 
-gServerSettings.stayInLevelAfterStar = 2
+gServerSettings.stayInLevelAfterStar = 1
 
 -----------------
 -- "sequences" --
