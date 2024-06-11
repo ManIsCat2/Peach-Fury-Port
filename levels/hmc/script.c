@@ -27,6 +27,8 @@ const LevelScript level_hmc_entry[] = {
 	LOAD_MIO0(0xa, _water_skybox_mio0SegmentRomStart, _water_skybox_mio0SegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
 	MARIO(MODEL_MARIO, 0x00000001, bhvMario),
+	LOAD_MODEL_FROM_GEO(MODEL_GOOMBA, goomba_geo),
+	LOAD_MODEL_FROM_GEO(MODEL_CHUCKYA, chuckya_geo),
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -40,7 +42,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(0, 6825, -6658, -4718, 0, -180, 0, (65 << 16), bhvPoleGrabbing),
 		OBJECT(MODEL_GOOMBA, 6948, -6658, -4503, 0, -180, 0, (1 << 16), bhvGoomba),
 		OBJECT(0, 6938, -6658, -4698, 0, -180, 0, (0 << 16), bhvGoombaTripletSpawner),
-		OBJECT(0, 6825, -6787, -4727, 0, -180, 0, (2 << 24), bhvGoombaStar),
+		OBJECT(0, 6825, -6787, -4727, 0, -180, 0, 6, bhvGoombaStar),
 		OBJECT(MODEL_BREAKABLE_BOX, 1408, -6758, -2020, 0, -180, 0, 0x00000000, bhvBreakableBox),
 		OBJECT(MODEL_BREAKABLE_BOX, 1408, -6758, -2420, 0, -180, 0, 0x00000000, bhvBreakableBox),
 		OBJECT(MODEL_BREAKABLE_BOX, 1808, -6758, -2420, 0, -180, 0, 0x00000000, bhvBreakableBox),
