@@ -53,6 +53,7 @@ local function for_each_object_with_behavior(behavior, func) --* function by Isa
 end
 
 MODEL_SILVER_STAR = smlua_model_util_get_id("silverstara_geo")
+MODEL_8BIT_PIPE = smlua_model_util_get_id("bitpipe_geo")
 
 played = false
 
