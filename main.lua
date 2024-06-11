@@ -10,9 +10,19 @@
 
 gLevelValues.entryLevel = LEVEL_HMC
 gLevelValues.exitCastleLevel = LEVEL_HMC
+gLevelValues.disableActs = true
 
 -------------------
 -- server values --
 -------------------
 
 gServerSettings.stayInLevelAfterStar = 2
+
+-----------------
+-- "sequences" --
+-----------------
+
+audio_0A = audio_stream_load("0A_domeL.mp3")
+audio_stream_set_looping(audio_0A, true)
+audio_stream_play(audio_0A, true, 1)
+
