@@ -110,15 +110,15 @@ function bbarrelcode(o)
             o.oFaceAngleYaw = math.random(0, 65535)
         end
         if cur_obj_is_mario_ground_pounding_platform() == 1 then
-            o.oAction = o.oAction + 1
+            o.oAction = 1
             o.oTimer = 0
         end
     end
 
-    local MINSUB = 3
+    local MINSUB = 0.1167
 
     if o.oAction == 1 then
-        o.header.gfx.scale.y = o.header.gfx.scale.x - MINSUB
+        o.header.gfx.scale.y = o.header.gfx.scale.y - MINSUB
         o.header.gfx.scale.x = math.sqrt(1 / o.header.gfx.scale.y)
         o.header.gfx.scale.z = o.header.gfx.scale.x
         if o.header.gfx.scale.y < (MINSUB * 4) then
