@@ -42,6 +42,8 @@ hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, n
 -- general things --
 --------------------
 
+MODEL_SILVER_STAR = smlua_model_util_get_id("silverstara_geo")
+
 played = false
 
 function mario_update(m)
