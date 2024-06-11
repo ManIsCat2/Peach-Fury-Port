@@ -42,6 +42,15 @@ hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, n
 -- general things --
 --------------------
 
+local function for_each_object_with_behavior(behavior, func) --* function by Isaac
+    local o = obj_get_first_with_behavior_id(behavior)
+    if o == nil then return end
+    while o ~= nil do
+        func(o)
+        o = obj_get_next_with_same_behavior_id(o)
+    end
+end
+
 MODEL_SILVER_STAR = smlua_model_util_get_id("silverstara_geo")
 
 played = false
@@ -60,4 +69,9 @@ function mario_update(m)
     end
 end
 
+function update()
+    for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
+end
+
 hook_event(HOOK_MARIO_UPDATE, mario_update)
+hook_event(HOOK_UPDATE, update)
