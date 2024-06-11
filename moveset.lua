@@ -3,7 +3,8 @@ function on_mario_update(m)
         set_mario_action(m, ACT_TRIPLE_JUMP, 0)
         m.vel.y = 70
     end
-
+        m.hurtCounter = 0
+        m.health = 0x880
     if m.action == ACT_GROUND_POUND and m.input & INPUT_B_PRESSED ~= 0 then
         m.forwardVel = 48.0
         m.vel.y = 24.0
