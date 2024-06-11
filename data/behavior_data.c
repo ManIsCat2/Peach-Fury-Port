@@ -19,3 +19,14 @@ const BehaviorScript bhvBounceFlower[] = {
     CALL_NATIVE(bounceyflower),
     END_LOOP(),
 };
+
+const BehaviorScript bhvBounceShroom[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO)),
+    SET_FLOAT(oDrawingDistance, 32000),
+    LOAD_COLLISION_DATA(COL_BOUNCE_SHROOM),
+    BEGIN_LOOP(),
+        CALL_NATIVE(diagshroom),
+    END_LOOP(),
+};
