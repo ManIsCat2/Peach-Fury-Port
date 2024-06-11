@@ -40,3 +40,13 @@ const BehaviorScript bhvBbarrel[] = {
         CALL_NATIVE(bbarrelcode),
     END_LOOP(),
 };
+
+const BehaviorScript bhvScavengerHunt[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BEGIN_LOOP(),
+    CALL_NATIVE(scavengersign),
+    END_LOOP(),
+};
+

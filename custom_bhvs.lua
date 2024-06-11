@@ -140,4 +140,32 @@ function bbarrelcode(o)
     load_object_collision_model()
 end
 
+function scavengersign(o)
+    local sign
+    if o.oAction == 0 then
+        if (gMarioStates[0].action == ACT_GROUND_POUND_LAND) and (o.oDistanceToMario < 1000) then
+            if o.oBehParams & 0x00ff ~= 0 then
+                spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200, gMarioStates[0].pos.z)
+                obj_mark_for_deletion(o)
+            else
+                sign = spawn_object(o, E_MODEL_WOODEN_SIGNPOST, id_bhvMessagePanel)
+                spawn_object(o, 0, id_bhvMistCircParticleSpawner)
+                sign.oBehParams2ndByte = o.oBehParams2ndByte
+                sign.oMoveAngleYaw = atan2s(o.oPosZ - gMarioStates[0].marioObj.oPosZ, o.oPosX - gMarioStates[0].marioObj.oPosX) + 0x8000
+                sign.oFaceAngleYaw = sign.oMoveAngleYaw
+                o.oAction = 1
+                sign.oPosY = sign.oPosY - 200
+                o.oHiddenBlueCoinSwitch = sign
+                play_sound(SOUND_GENERAL2_RIGHT_ANSWER, {x=0,y=0,z=0})
+            end
+        end
+    else
+        if o.oHiddenBlueCoinSwitch then
+            if o.oTimer < 10 then
+                o.oHiddenBlueCoinSwitch.oPosY = o.oHiddenBlueCoinSwitch.oPosY + 20
+            end
+        end
+    end
+end
+
 
