@@ -12,3 +12,9 @@ gLevelValues.entryLevel = LEVEL_HMC
 
 gLevelValues.entryLevel = LEVEL_HMC
 gLevelValues.exitCastleLevel = LEVEL_HMC
+
+-------------------
+-- server values --
+-------------------
+
+gServerSettings.stayInLevelAfterStar = 2
