@@ -1,5 +1,5 @@
 -- name: \\#FFC0CB\\Peach's Fury
--- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat\n\n\Actual Romhack by Kaze and LegendOfZeina
+-- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat.\n\Thanks to Blocky for MS Stars.\n\n\Actual Romhack by Kaze and LegendOfZeina.
 -- incompatible: romhack
 
 ------------------
@@ -45,6 +45,7 @@ hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, n
 played = false
 
 function mario_update(m)
+    hud_hide()
     if m.action == ACT_STAR_DANCE_NO_EXIT and not played then
         play_music(SEQ_PLAYER_ENV, 0, 0);
         audio_stream_set_looping(audio_02, false)
