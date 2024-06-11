@@ -2,7 +2,7 @@
 -- Peach's Fury 64 --
 ---------------------
 
-smlua_text_utils_dialog_replace(0, 1, 5, 30, 200, _("\
+smlua_text_utils_dialog_replace(DIALOG_000, 1, 5, 30, 200, _("\
 This game was created\n\
 to showcase my new\n\
 RTYI optimizations.\n\
