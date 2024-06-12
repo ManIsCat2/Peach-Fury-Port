@@ -61,9 +61,14 @@ played = false
 
 function update()
     hud_hide()
-    
+
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
-    for_each_object_with_behavior(id_bhvWarpPipe, function(o) if obj_has_model_extended(o, MODEL_8BIT_PIPE) ~= 0 then o.collisionData = COL_8BIT_PIPE end end)
+    for_each_object_with_behavior(id_bhvWarpPipe,
+        function(o)
+            if obj_has_model_extended(o, MODEL_8BIT_PIPE) ~= 0 then
+                o.collisionData = COL_8BIT_PIPE
+            end
+        end)
 end
 
 hook_event(HOOK_MARIO_UPDATE, mario_update)
