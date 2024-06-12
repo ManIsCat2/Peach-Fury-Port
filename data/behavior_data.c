@@ -61,3 +61,23 @@ const BehaviorScript bhvMerry[] = {
         CALL_NATIVE(goround),
     END_LOOP(),
 };
+
+const BehaviorScript bhvFreeBird[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO
+                    | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, birds_seg5_anims_050009E8),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 50, /*Gravity*/ -200, /*Bounciness*/ -20,
+                    /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
+    ANIMATE(2),
+    SET_HOME(),
+    BEGIN_LOOP(),
+    //set scale randomly
+    // move around a little bit, by doing small jumps
+    // flies in stored directio when approach
+    // runs if mario close to home
+    // 
+        CALL_NATIVE(freebird),
+    END_LOOP(),
+};

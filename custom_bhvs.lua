@@ -210,3 +210,98 @@ function goround(o)
     o.oMacroUnk108 = o.oMacroUnk108 + o.oAngleVelYaw
     load_object_collision_model()
 end
+
+function checkRun(currentObj) 
+    if (currentObj.oDistanceToMario < 500.0) then
+        currentObj.oBehParams2ndByte = obj_angle_to_object(gMarioStates[0].marioObj, currentObj);
+        currentObj.oAction = 3;
+        cur_obj_play_sound_1(SOUND_GENERAL_BIRDS_FLY_AWAY);
+    end
+end
+
+function freebird(o)
+    local coin
+    local x, y, z
+    x = o.oPosX
+    y = o.oPosY
+    z = o.oPosZ
+    -- o.oGraphYOffset = 18.0 * o.header.gfx.scale[1]
+    if o.oAction == 0 then
+        -- init values
+        if obj_has_model_extended(o, E_MODEL_BIRDS) ~= 0 then
+            cur_obj_scale(1.0 + random_f32_around_zero(0.5))
+        else
+            cur_obj_scale(2.0)
+            o.oDrawingDistance = 16000.0
+        end
+        o.oOpacity = o.oMoveAngleYaw
+        o.oMoveAngleYaw = math.random(0, 65536)
+        o.oAction = o.oAction + 1
+        o.header.gfx.animInfo.animFrame = math.random(0, 65536) % 50
+        cur_obj_init_animation(1)
+    elseif o.oAction == 1 then
+        -- stand around
+        if o.header.gfx.animInfo.animFrame == 53 then
+            if ((math.random(0, 65536) & 1) == 0) then
+                o.oAction = 2
+            else
+                o.header.gfx.animInfo.animFrame = 0
+            end
+        end
+        o.oForwardVel = approach_f32_symmetric(o.oForwardVel, 0.0, 1.0)
+        checkRun(o)
+    elseif o.oAction == 2 then
+        -- smol hop
+        if o.oTimer == 5 then
+            o.oVelY = 20.0
+            o.oForwardVel = 8.0
+            if cur_obj_lateral_dist_to_home() < 400.0 then
+                o.oMoveAngleYaw = math.random(0, 65536)
+            else
+                o.oMoveAngleYaw = cur_obj_angle_to_home()
+            end
+        end
+        if o.oTimer == 25 then
+            o.oAction = 1
+        end
+        checkRun(o)
+    elseif o.oAction == 3 then
+        cur_obj_init_animation(0)
+        -- fly away, drop coin
+        if o.oTimer == 0 then
+            if obj_has_model_extended(o, E_MODEL_BIRDS) ~= 0 then
+                coin = spawn_object(o, E_MODEL_YELLOW_COIN, id_bhvMovingYellowCoin)
+                coin.oForwardVel = 0.67  * 10
+                coin.oVelY = 0.67 * 40 + 20
+                coin.oMoveAngleYaw = math.random(0, 65536)
+            else
+                coin = spawn_object(o, E_MODEL_RED_COIN, id_bhvRedCoin)
+                coin.oFloorHeight = o.oFloorHeight
+                cur_obj_scale(1.5)
+            end
+        end
+        o.oForwardVel = approach_f32_symmetric(o.oForwardVel, 50.0, 5.0)
+        o.oVelY = approach_f32_symmetric(o.oVelY, 30.0, 3.0)
+        if o.oTimer > 8 then
+            o.oMoveAngleYaw = approach_s16_symmetric(o.oMoveAngleYaw, o.oOpacity, 0x800)
+        else
+            o.oMoveAngleYaw = approach_s16_symmetric(o.oMoveAngleYaw, o.oBehParams2ndByte, 0x200)
+        end
+        if o.oTimer > 210 then
+            obj_mark_for_deletion(o)
+        end
+    end
+    if o.oAction == 3 and o.oTimer > 40 then
+        cur_obj_move_using_vel()
+    elseif o.oAction ~= 1 then
+        cur_obj_update_floor_and_walls()
+        cur_obj_move_standard(-78)
+        if o.oAction ~= 3 then
+            if o.oFloorHeight < o.oHomeY then
+                o.oPosX = x
+                o.oPosZ = z
+            end
+        end
+    end
+end
+
