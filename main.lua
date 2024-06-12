@@ -23,8 +23,8 @@ gServerSettings.stayInLevelAfterStar = 1
 -----------------
 
 audio_0A = audio_stream_load("0A_domeL.mp3")
-audio_02 = audio_stream_load("02_stardanceleft.mp3")
-audio_1C = audio_sample_load("1C.mp3")
+--audio_02 = audio_stream_load("02_stardanceleft.mp3")
+--audio_1C = audio_sample_load("1C.mp3")
 audio_stream_set_looping(audio_0A, true)
 audio_stream_play(audio_0A, true, 1)
 
@@ -59,21 +59,9 @@ MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 
 played = false
 
-function mario_update(m)
-    hud_hide()
-    if m.action == ACT_STAR_DANCE_NO_EXIT and not played then
-        play_music(SEQ_PLAYER_ENV, 0, 0);
-        audio_stream_set_looping(audio_02, false)
-        audio_stream_play(audio_02, false, 1)
-        played = true
-    end
-
-    if m.action ~= ACT_STAR_DANCE_NO_EXIT then
-        played = false
-    end
-end
-
 function update()
+    hud_hide()
+    
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
     for_each_object_with_behavior(id_bhvWarpPipe, function(o) if obj_has_model_extended(o, MODEL_8BIT_PIPE) ~= 0 then o.collisionData = COL_8BIT_PIPE end end)
 end
