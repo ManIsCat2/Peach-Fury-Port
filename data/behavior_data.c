@@ -50,3 +50,14 @@ const BehaviorScript bhvScavengerHunt[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvMerry[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    //LOAD_COLLISION_DATA(rotatething_collision),
+    SET_FLOAT(oDrawingDistance, 15000),
+    SET_HOME(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(goround),
+    END_LOOP(),
+};

@@ -123,7 +123,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(0, -6561, -5891, -7295, 0, 34, 0, (0 << 24) | (0x11 << 16), bhvCoinFormation),
 		OBJECT(0, -7367, -6759, -9406, 0, -180, 0, (0 << 24) | (2 << 16), bhvCoinFormation),
 		OBJECT(0x40, -4373, -3502, -8735, 0, 136, 0, (0 << 24) | (1 << 16), bhvSwingVein),
-		OBJECT(0x43, 10625, -1713, -555, 0, -180, 0, (20 << 24), bhvMerry),
+		OBJECT(MODEL_ROTATETHING, 10625, -1713, -555, 0, -180, 0, (20 << 24), bhvMerry),
 		OBJECT(MODEL_BOUNCY_FLOWER, -2598, -6188, -1641, 0, -180, 0, (0xf0 << 24) | (0 << 16), bhvBounceFlower),
 		OBJECT(MODEL_STAR, -7466, -3904, -8110, 0, -180, 0, (24 << 24), bhvStar),
 		OBJECT(MODEL_BOUNCY_FLOWER, 8560, -1889, 2755, 0, -180, 0, (0xf0 << 24) | (0 << 16), bhvBounceFlower),

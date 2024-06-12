@@ -151,12 +151,13 @@ function scavengersign(o)
                 sign = spawn_object(o, E_MODEL_WOODEN_SIGNPOST, id_bhvMessagePanel)
                 spawn_object(o, 0, id_bhvMistCircParticleSpawner)
                 sign.oBehParams2ndByte = o.oBehParams2ndByte
-                sign.oMoveAngleYaw = atan2s(o.oPosZ - gMarioStates[0].marioObj.oPosZ, o.oPosX - gMarioStates[0].marioObj.oPosX) + 0x8000
+                sign.oMoveAngleYaw = atan2s(o.oPosZ - gMarioStates[0].marioObj.oPosZ,
+                    o.oPosX - gMarioStates[0].marioObj.oPosX) + 0x8000
                 sign.oFaceAngleYaw = sign.oMoveAngleYaw
                 o.oAction = 1
                 sign.oPosY = sign.oPosY - 200
                 o.oHiddenBlueCoinSwitch = sign
-                play_sound(SOUND_GENERAL2_RIGHT_ANSWER, {x=0,y=0,z=0})
+                play_sound(SOUND_GENERAL2_RIGHT_ANSWER, { x = 0, y = 0, z = 0 })
             end
         end
     else
@@ -168,4 +169,43 @@ function scavengersign(o)
     end
 end
 
+MODEL_ROTATETHING = smlua_model_util_get_id("rotatething_geo")
+COL_ROTATETHING = smlua_collision_util_get("rotatething_collision")
 
+---@param o Object
+function goround(o)
+    o.collisionData = COL_ROTATETHING
+    if o.oAction == 0 then
+        o.oOpacity = obj_angle_to_object(o, gMarioStates[0].marioObj)
+        if cur_obj_is_mario_on_platform() == 1 then
+            o.oAction = 1
+        end
+    else
+        if (math.abs(o.oAngleVelYaw) > 70) and o.oMacroUnk10C == 0 then
+            spawn_object(o, E_MODEL_SPARKLES, id_bhvSparkleParticleSpawner)
+            if o.oTimer % 8 == 0 then
+                cur_obj_play_sound_1(SOUND_GENERAL_BOAT_ROCK)
+            end
+        end
+        o.oAngleVelYaw = o.oAngleVelYaw - ((math.floor(obj_angle_to_object(o, gMarioStates[0].marioObj) - o.oOpacity)) / 10)
+        o.oOpacity = obj_angle_to_object(o, gMarioStates[0].marioObj)
+        if cur_obj_is_mario_on_platform() == 0 then
+            o.oAction = 0
+        end
+        if math.abs(o.oMacroUnk108) > 10000 then
+            if o.oMacroUnk10C == 0 then
+                o.oMacroUnk10C = 1
+                spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200, gMarioStates[0].pos.z)
+            end
+        end
+    end
+    if math.abs(o.oMacroUnk108) > 0x8000 then
+        o.oPosY = 66 + o.oHomeY
+    else
+        o.oPosY = math.abs(o.oMacroUnk108) / 500 + o.oHomeY
+    end
+    o.oAngleVelYaw = approach_s16_asymptotic(o.oAngleVelYaw, 0, 3)
+    o.oFaceAngleYaw = o.oFaceAngleYaw + o.oAngleVelYaw
+    o.oMacroUnk108 = o.oMacroUnk108 + o.oAngleVelYaw
+    load_object_collision_model()
+end
