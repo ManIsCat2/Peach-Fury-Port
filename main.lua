@@ -54,6 +54,7 @@ end
 
 MODEL_SILVER_STAR = smlua_model_util_get_id("silverstara_geo")
 MODEL_8BIT_PIPE = smlua_model_util_get_id("bitpipe_geo")
+MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 
 played = false
 
