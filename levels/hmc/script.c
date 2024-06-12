@@ -30,6 +30,7 @@ const LevelScript level_hmc_entry[] = {
 	JUMP_LINK(script_func_global_1),
 	LOAD_MODEL_FROM_GEO(0x16, warp_pipe_geo),
 	LOAD_MODEL_FROM_GEO(0xC0, goomba_geo),
+	LOAD_MODEL_FROM_GEO(0xF6, bitpipe_geo),
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -58,7 +59,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(0, 6259, -5558, 4823, 0, -180, 0, (0 << 24) | (4 << 16), bhvFlamethrower),
 		OBJECT(0, 8890, -5705, 4034, 0, -180, 0, (0 << 24) | (4 << 16), bhvFlamethrower),
 		OBJECT(0, 7698, -6488, 2403, 0, -180, 0, (0 << 24) | (4 << 16), bhvFlamethrower),
-		OBJECT(MODEL_8BIT_PIPE, 8952, -5055, -484, 0, -90, 0, 0x000E0001, id_bhvWarpPipe),
+		OBJECT(0xF6, 8952, -5055, -484, 0, -90, 0, 0x000E0001, id_bhvWarpPipe),
 		OBJECT(0, 472, -2187, -10505, 0, -180, 0, (73 << 16), bhvPoleGrabbing),
 		OBJECT(0x36, 475, -1656, -10505, 0, -90, 0, (64 << 16), bhvCheckpointFlag),
 		OBJECT(0, 4361, -6222, -10961, 0, -180, 0, (93 << 16), bhvPoleGrabbing),
@@ -170,7 +171,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(0x46, 483, -325, 4947, 0, 0, 0, (0 << 24) | (100 << 16), bhvWindMill2),
 		OBJECT(0x46, -5015, -961, 6321, 0, -90, 0, (0 << 24) | (81 << 16), bhvWindMill2),
 		OBJECT(0x46, -6789, -1581, 5705, 0, -90, 0, (0 << 24) | (78 << 16), bhvWindMill2),
-		OBJECT(MODEL_8BIT_PIPE, -8164, -2282, 7032, 0, 147, 0, 0x00100001, id_bhvWarpPipe),
+		OBJECT(0xF6, -8164, -2282, 7032, 0, 147, 0, 0x00100001, id_bhvWarpPipe),
 		OBJECT(0x47, 7730, -890, 7391, 0, -95, 0, 0x00000000, bhvCheckpointFlag),
 		OBJECT(MODEL_WOODEN_SIGNPOST, -9954, -4513, 490, 0, 90, 0, (0 << 24) | (169 << 16), bhvMessagePanel),
 		MARIO_POS(0x01, 0, 1764, -6772, -7590),
