@@ -213,7 +213,7 @@ const LevelScript level_hmc_entry[] = {
 		WARP_NODE(0x0A, LEVEL_HMC, 0x01, 0x10, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x0B, LEVEL_HMC, 0x01, 0x10, WARP_NO_CHECKPOINT),
 		WARP_NODE(0x10, LEVEL_HMC, 0x03, 0x0A, WARP_NO_CHECKPOINT),
-		OBJECT(0x16, 125, 125, 141, 0, 0, 0, (0x60 << 24) | (0x0A << 16), bhvWarpPipe),
+		OBJECT(0x16, 125, 125, 141, 0, 0, 0, (0x0A << 16), bhvWarpPipe),
 		OBJECT(MODEL_STAR, 3000, 3309, 6500, 0, -180, 0, (21 << 24), bhvStar),
 		OBJECT(0x16, 3500, 3109, 7000, 0, -135, 0, (0x0B << 16), bhvWarpPipe),
 		TERRAIN(hmc_area_3_collision),
