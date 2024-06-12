@@ -1,5 +1,5 @@
 -- name: \\#FFC0CB\\Peach's Fury
--- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat.\n\Thanks to Blocky for MS Stars.\n\ Also thanks to EmilyEmmi for letting use some MarioHunt code \n\Actual Romhack by Kaze and legendofzeina.
+-- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat.\n\Thanks to Blocky for MS Stars.\n\ Also thanks to EmilyEmmi for letting us some MarioHunt code \n\Actual Romhack by Kaze and legendofzeina.
 -- incompatible: romhack
 
 ------------------
