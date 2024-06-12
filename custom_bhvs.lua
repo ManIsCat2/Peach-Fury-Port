@@ -219,6 +219,8 @@ function checkRun(currentObj)
     end
 end
 
+E_MODEL_BIRDS2 = smlua_model_util_get_id("birds2_geo")
+
 function freebird(o)
     local coin
     local x, y, z
