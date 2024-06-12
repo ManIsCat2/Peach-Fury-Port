@@ -7571,6 +7571,10 @@ u8 hmc_dl_CGGRASS_i4[] = {
 	
 };
 
+ALIGNED8 const Texture rainbow_custom[] = {
+#include "levels/hmc/stars.rgba16.inc.c"
+};
+
 Gfx hmc_dl_ScoreAttackManInd_i8_aligner[] = {gsSPEndDisplayList()};
 u8 hmc_dl_ScoreAttackManInd_i8[] = {
 	0x4c, 0x66, 0xb8, 0xb8, 0x79, 0x62, 0xb1, 0xb1, 
@@ -30405,6 +30409,37 @@ Vtx hmc_dl_BGeometry_mesh_layer_1_vtx_33[93] = {
 };
 
 Gfx hmc_dl_BGeometry_mesh_layer_1_tri_33[] = {
+	gsSPVertex(hmc_dl_BGeometry_mesh_layer_1_vtx_33 + 32, 32, 0),
+	//gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
+	//gsSP2Triangles(4, 5, 6, 0, 4, 6, 7, 0),
+	//gsSP2Triangles(8, 9, 10, 0, 8, 10, 11, 0),
+	//gsSP2Triangles(12, 8, 11, 0, 12, 11, 13, 0),
+	//gsSP2Triangles(14, 12, 13, 0, 14, 13, 15, 0),
+	//gsSP2Triangles(16, 14, 15, 0, 16, 15, 17, 0),
+	gsSP2Triangles(18, 19, 20, 0, 21, 19, 18, 0),
+	gsSP2Triangles(22, 19, 21, 0, 23, 19, 22, 0),
+	gsSP2Triangles(24, 19, 23, 0, 25, 19, 24, 0),
+	gsSP2Triangles(20, 19, 25, 0, 26, 27, 28, 0),
+	gsSP2Triangles(29, 27, 26, 0, 30, 27, 29, 0),
+	gsSP1Triangle(31, 27, 30, 0),
+	gsSPVertex(hmc_dl_BGeometry_mesh_layer_1_vtx_33 + 64, 29, 0),
+	gsSP2Triangles(0, 1, 2, 0, 3, 1, 0, 0),
+	gsSP2Triangles(4, 1, 3, 0, 5, 6, 7, 0),
+	gsSP2Triangles(8, 6, 5, 0, 9, 6, 8, 0),
+	gsSP2Triangles(10, 6, 9, 0, 11, 6, 10, 0),
+	gsSP2Triangles(12, 6, 11, 0, 7, 6, 12, 0),
+	gsSP2Triangles(13, 14, 15, 0, 16, 14, 13, 0),
+	gsSP2Triangles(17, 14, 16, 0, 18, 14, 17, 0),
+	gsSP2Triangles(19, 14, 18, 0, 20, 14, 19, 0),
+	gsSP2Triangles(15, 14, 20, 0, 21, 22, 23, 0),
+	gsSP2Triangles(24, 22, 21, 0, 25, 22, 24, 0),
+	gsSP2Triangles(26, 22, 25, 0, 27, 22, 26, 0),
+	gsSP2Triangles(28, 22, 27, 0, 23, 22, 28, 0),
+	gsSPEndDisplayList(),
+};
+
+//custom manually made
+Gfx hmc_dl_Custom_rainbow_tri33[]= {
 	gsSPVertex(hmc_dl_BGeometry_mesh_layer_1_vtx_33 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 4, 3, 5, 0),
@@ -30425,25 +30460,6 @@ Gfx hmc_dl_BGeometry_mesh_layer_1_tri_33[] = {
 	gsSP2Triangles(12, 8, 11, 0, 12, 11, 13, 0),
 	gsSP2Triangles(14, 12, 13, 0, 14, 13, 15, 0),
 	gsSP2Triangles(16, 14, 15, 0, 16, 15, 17, 0),
-	gsSP2Triangles(18, 19, 20, 0, 21, 19, 18, 0),
-	gsSP2Triangles(22, 19, 21, 0, 23, 19, 22, 0),
-	gsSP2Triangles(24, 19, 23, 0, 25, 19, 24, 0),
-	gsSP2Triangles(20, 19, 25, 0, 26, 27, 28, 0),
-	gsSP2Triangles(29, 27, 26, 0, 30, 27, 29, 0),
-	gsSP1Triangle(31, 27, 30, 0),
-	gsSPVertex(hmc_dl_BGeometry_mesh_layer_1_vtx_33 + 64, 29, 0),
-	gsSP2Triangles(0, 1, 2, 0, 3, 1, 0, 0),
-	gsSP2Triangles(4, 1, 3, 0, 5, 6, 7, 0),
-	gsSP2Triangles(8, 6, 5, 0, 9, 6, 8, 0),
-	gsSP2Triangles(10, 6, 9, 0, 11, 6, 10, 0),
-	gsSP2Triangles(12, 6, 11, 0, 7, 6, 12, 0),
-	gsSP2Triangles(13, 14, 15, 0, 16, 14, 13, 0),
-	gsSP2Triangles(17, 14, 16, 0, 18, 14, 17, 0),
-	gsSP2Triangles(19, 14, 18, 0, 20, 14, 19, 0),
-	gsSP2Triangles(15, 14, 20, 0, 21, 22, 23, 0),
-	gsSP2Triangles(24, 22, 21, 0, 25, 22, 24, 0),
-	gsSP2Triangles(26, 22, 25, 0, 27, 22, 26, 0),
-	gsSP2Triangles(28, 22, 27, 0, 23, 22, 28, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -37014,6 +37030,33 @@ Gfx mat_revert_hmc_dl_f3d_material_055[] = {
 	gsSPEndDisplayList(),
 };
 
+
+//custom
+Gfx mat_hmc_rainbow_custom[] = {
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, 1, TEXEL0, 0, SHADE, 0, 0, 0, 0, 1),
+	gsSPGeometryMode(G_LIGHTING, 0),
+	gsDPSetTextureLUT(G_TT_RGBA16),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, rainbow_custom),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 15),
+	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, rainbow_custom),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 1023, 512),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTileSize(0, 0, 0, 252, 252),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_hmc_rainbow_custom[] = {
+	gsDPPipeSync(),
+	gsSPGeometryMode(0, G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
+	gsSPEndDisplayList(),
+};
+//end
+
 Gfx hmc_dl_AAAAAAABackGround_003_mesh_layer_0[] = {
 	gsSPDisplayList(mat_hmc_dl_f3d_material_011_layer0),
 	gsSPDisplayList(hmc_dl_AAAAAAABackGround_003_mesh_layer_0_tri_0),
@@ -37287,6 +37330,10 @@ Gfx hmc_dl_BGeometry_mesh_layer_1[] = {
 	gsSPDisplayList(mat_hmc_dl_Zsand),
 	gsSPDisplayList(hmc_dl_BGeometry_mesh_layer_1_tri_36),
 	gsSPDisplayList(mat_revert_hmc_dl_Zsand),
+	//custom
+	gsSPDisplayList(mat_hmc_rainbow_custom),
+	gsSPDisplayList(hmc_dl_Custom_rainbow_tri33),
+	gsSPDisplayList(mat_revert_hmc_rainbow_custom),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),
