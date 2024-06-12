@@ -37035,6 +37035,7 @@ Gfx mat_revert_hmc_dl_f3d_material_055[] = {
 Gfx mat_hmc_rainbow_custom[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, 1, TEXEL0, 0, SHADE, 0, 0, 0, 0, 1),
+	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPGeometryMode(G_LIGHTING, 0),
 	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsSPTexture(65535, 65535, 0, 0, 1),
@@ -37051,6 +37052,7 @@ Gfx mat_hmc_rainbow_custom[] = {
 
 Gfx mat_revert_hmc_rainbow_custom[] = {
 	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_CULL_BACK),
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
