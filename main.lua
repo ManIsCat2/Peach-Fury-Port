@@ -54,6 +54,7 @@ end
 
 MODEL_SILVER_STAR = smlua_model_util_get_id("silverstara_geo")
 MODEL_8BIT_PIPE = smlua_model_util_get_id("bitpipe_geo")
+COL_8BIT_PIPE = smlua_collision_util_get("bitpipe_collision")
 MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 
 played = false
@@ -74,6 +75,7 @@ end
 
 function update()
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
+    for_each_object_with_behavior(id_bhvWarpPipe, function(o) if obj_has_model_extended(o, MODEL_8BIT_PIPE) ~= 0 then o.collisionData = COL_8BIT_PIPE end end)
 end
 
 hook_event(HOOK_MARIO_UPDATE, mario_update)
