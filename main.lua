@@ -1,7 +1,5 @@
--- name: Peach's Fury
--- incompatible: romhack
-
--- description: \\#ff0000\\WARNING:\nTHE FOLLOWING MOD SHOULD NOT BE HOSTED PUBLICLY AS IT'S ONLY FOR TESTING!!\nIF YOU SEE THIS MESSAGE IN A PUBLIC SERVER, PLEASE REPORT IT TO A MODERATOR IN THE SM64EXCOOP SERVER!\n\n \\#f7f7f7\\Peach's Fury is a romhack made by \n Kaze \n & \n thelegendofzenia \n and ported by ThePerfectMario64 \n this hach was possible \n cause Kaze was nice enough \n to open-source Peach's Fury, And the models.
+-- name: \\#FFC0CB\\Peach's Fury
+-- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat.\n\Thanks to Blocky for MS Stars.\n\n\Actual Romhack by Kaze and legendofzeina.
 -- incompatible: romhack
 
 ------------------
@@ -10,9 +8,67 @@
 
 gLevelValues.entryLevel = LEVEL_HMC
 gLevelValues.exitCastleLevel = LEVEL_HMC
+gLevelValues.disableActs = true
+gLevelValues.fixCollisionBugs = true
+gLevelValues.fixCollisionBugsPickBestWall = true
 
 -------------------
 -- server values --
 -------------------
 
-gServerSettings.stayInLevelAfterStar = 2
+gServerSettings.stayInLevelAfterStar = 1
+
+-----------------
+-- "sequences" --
+-----------------
+
+audio_0A = audio_stream_load("0A_domeL.mp3")
+--audio_02 = audio_stream_load("02_stardanceleft.mp3")
+--audio_1C = audio_sample_load("1C.mp3")
+audio_stream_set_looping(audio_0A, true)
+audio_stream_play(audio_0A, true, 1)
+
+------------------
+-- bhv override --
+------------------
+
+function breakable_box_init(o)
+    obj_scale_xyz(o, 2, 2, 2)
+    o.oCollisionDistance = 1000
+end
+
+hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, nil)
+
+--------------------
+-- general things --
+--------------------
+
+local function for_each_object_with_behavior(behavior, func) --* function by Isaac
+    local o = obj_get_first_with_behavior_id(behavior)
+    if o == nil then return end
+    while o ~= nil do
+        func(o)
+        o = obj_get_next_with_same_behavior_id(o)
+    end
+end
+
+MODEL_SILVER_STAR = smlua_model_util_get_id("silverstara_geo")
+MODEL_8BIT_PIPE = smlua_model_util_get_id("bitpipe_geo")
+COL_8BIT_PIPE = smlua_collision_util_get("bitpipe_collision")
+MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
+
+played = false
+
+function update()
+    hud_hide()
+
+    for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
+    for_each_object_with_behavior(id_bhvWarpPipe,
+        function(o)
+            if obj_has_model_extended(o, MODEL_8BIT_PIPE) ~= 0 then
+                o.collisionData = COL_8BIT_PIPE
+            end
+        end)
+end
+
+hook_event(HOOK_UPDATE, update)
