@@ -162,7 +162,7 @@ function scavengersign(o)
     else
         if o.oHiddenBlueCoinSwitch then
             if o.oTimer < 10 then
-                o.oHiddenBlueCoinSwitch.oPosY = o.oHiddenBlueCoinSwitch.oPosY + 20
+                o.oHiddenBlueCoinSwitch.oPosY = o.oHiddenBlueCoinSwitch.oPosY + 3
             end
         end
     end
