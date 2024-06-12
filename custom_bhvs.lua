@@ -200,7 +200,7 @@ function goround(o)
             end
         end
     end
-    if math.abs(o.oMacroUnk108) > 0x8000 then
+    if math.abs(o.oMacroUnk108) > 10000 then
         o.oPosY = 66 + o.oHomeY
     else
         o.oPosY = math.abs(o.oMacroUnk108) / 500 + o.oHomeY

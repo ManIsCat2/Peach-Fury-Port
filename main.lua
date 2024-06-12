@@ -43,6 +43,8 @@ hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, n
 -- general things --
 --------------------
 
+gMarioStates[0].health = 99
+
 local function for_each_object_with_behavior(behavior, func) --* function by Isaac
     local o = obj_get_first_with_behavior_id(behavior)
     if o == nil then return end
