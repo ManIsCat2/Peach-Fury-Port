@@ -71,5 +71,4 @@ function update()
         end)
 end
 
-hook_event(HOOK_MARIO_UPDATE, mario_update)
 hook_event(HOOK_UPDATE, update)
