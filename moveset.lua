@@ -8,8 +8,6 @@ local function limit_angle(a)
 end
 
 function act_wall_slide(m)
-
-    m.forwardVel = 30
     if (m.input & INPUT_A_PRESSED) ~= 0 then
         m.vel.y = 52.0
         -- m.faceAngle.y = limit_angle(m.faceAngle.y + 0x8000)
