@@ -187,6 +187,7 @@ const LevelScript level_hmc_entry[] = {
 		MARIO_POS(0x01, 0, 1764, -6772, -7590),
 		OBJECT(MODEL_NONE, 1764, -6272, -7590, 0, 0, 0, (0x0A << 16), bhvSpinAirborneWarp),
 		OBJECT(0x48, 1809, -6772, -6435, 0, -16, 0, (6 << 16), bhvPeachy),
+		OBJECT_WITH_ACTS(/* model*/ 0, /*speed*/ 4, /*axis*/4, /*vtx count*/55, 0, /*scroll type*/ 0, /*cycle*/ 1, /*index*/ 213, RM_Scroll_Texture, 31),
 		TERRAIN(hmc_area_1_collision),
 		MACRO_OBJECTS(hmc_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, 102),

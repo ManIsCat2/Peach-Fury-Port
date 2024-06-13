@@ -35563,7 +35563,7 @@ Gfx mat_hmc_dl_Watermat_layer0[] = {
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_16b, 1, hmc_dl_tiki2_i4),
+	//gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_16b, 1, hmc_dl_tiki2_i4),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_16b, 0, 256, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(6, 0, 0, 1023, 512),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_4b, 4, 256, 1, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
@@ -35574,7 +35574,7 @@ Gfx mat_hmc_dl_Watermat_layer0[] = {
 Gfx mat_revert_hmc_dl_Watermat_layer0[] = {
 	gsDPPipeSync(),
 	gsSPGeometryMode(0, G_ZBUFFER | G_LIGHTING),
-	gsDPSetCycleType(G_CYC_1CYCLE),
+	//gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_ZB_OPA_SURF, G_RM_ZB_OPA_SURF2),
 	gsSPEndDisplayList(),
 };
