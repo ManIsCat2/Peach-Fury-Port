@@ -188,7 +188,7 @@ function goround(o)
             end
         end
         o.oAngleVelYaw = o.oAngleVelYaw -
-        ((math.floor(obj_angle_to_object(o, gMarioStates[0].marioObj) - o.oOpacity)) / 10)
+            ((math.floor(obj_angle_to_object(o, gMarioStates[0].marioObj) - o.oOpacity)) / 10)
         o.oOpacity = obj_angle_to_object(o, gMarioStates[0].marioObj)
         if cur_obj_is_mario_on_platform() == 0 then
             o.oAction = 0
@@ -320,6 +320,145 @@ function bhvbluespawenrosadhbgiuogdsiuzfghdsaiuzofgo(o)
         obj_mark_for_deletion(o)
     end
 end
+
+local SEGMENTLENGTH = -200.0
+
+function calcMarioVinePos(o)
+    local rotation = o.oMoveAnglePitch / 5
+    local xc = math.sin(math.rad(o.oFaceAngleYaw))
+    local zc = math.cos(math.rad(o.oFaceAngleYaw))
+    local currX = o.oPosX
+    local currY = o.oPosY + 1000.0
+    local currZ = o.oPosZ
+
+    for i = 1, 4 do
+        currX = currX + xc * math.sin(math.rad(rotation * i)) * SEGMENTLENGTH
+        currY = currY + math.cos(math.rad(rotation * i)) * SEGMENTLENGTH
+        currZ = currZ + zc * math.sin(math.rad(rotation * i)) * SEGMENTLENGTH
+    end
+
+    local VISUALOFFSET = -50.0
+    currX = currX + xc * math.sin(math.rad(0x4000 + rotation * 4)) * VISUALOFFSET
+    currY = currY + math.cos(math.rad(0x4000 + rotation * 4)) * VISUALOFFSET
+    currZ = currZ + zc * math.sin(math.rad(0x4000 + rotation * 4)) * VISUALOFFSET
+
+    if (o.oTimer < 15) then
+        gMarioStates[0].pos.x =
+            approach_f32_asymptotic(gMarioStates[0].pos.x, currX, 0.06666 * (o.oTimer + 1));
+        gMarioStates[0].pos.y =
+            approach_f32_asymptotic(gMarioStates[0].pos.y, currY, 0.06666 * (o.oTimer + 1));
+        gMarioStates[0].pos.z =
+            approach_f32_asymptotic(gMarioStates[0].pos.z, currZ, 0.06666 * (o.oTimer + 1));
+        gMarioStates[0].pos.x = approach_f32_symmetric(gMarioStates[0].pos.x, currX, 10.0);
+        gMarioStates[0].pos.y = approach_f32_symmetric(gMarioStates[0].pos.y, currY, 10.0);
+        gMarioStates[0].pos.z = approach_f32_symmetric(gMarioStates[0].pos.z, currZ, 10.0);
+    else
+        gMarioStates[0].pos.x = currX;
+        gMarioStates[0].pos.y = currY;
+        gMarioStates[0].pos.z = currZ;
+    end
+end
+
+ACT_HANG_VINE =        allocate_mario_action(0x151 | ACT_FLAG_STATIONARY | ACT_FLAG_ON_POLE | ACT_FLAG_PAUSE_EXIT)
+
+MODEL_SWINGVINE = smlua_model_util_get_id("swingvine_geo")
+
+-- Function to swing the vine
+function swingVein(o)
+    local i
+    local transformers
+    local speedScale = 1.0
+    ---@type MarioState
+    local m = gMarioStates[0]
+    o.oAnimState = o.oBehParams2ndByte
+
+    if o.oAction == 0 then
+        if (math.random(0, 65535) & 0x3F) == 0 then
+            o.oAngleVelPitch = o.oAngleVelPitch + (math.random(0, 200) - 100)
+        end
+        if o.oTimer > 20 then
+            if (lateral_dist_between_objects(o, gMarioStates[0].marioObj) < 100.0) and
+                (gMarioStates[0].pos.y + 100.0 > o.oPosY) and
+                (gMarioStates[0].pos.y < o.oPosY + 1000.0) then
+                if (m.controller.buttonDown & Y_BUTTON) ~= 0 then
+                    o.oAction = 1
+                    gMarioStates[0].action = ACT_HANG_VINE
+                    gMarioStates[0].usedObj = o
+                    o.oAngleVelPitch = -gMarioStates[0].forwardVel / 0.01581917687 / 2.0
+                    play_sound(SOUND_MARIO_WHOA, m.marioObj.header.gfx.cameraToObject)
+                end
+            end
+        end
+    elseif o.oAction == 1 then
+        local OFFSET = -1000.0
+        speedScale = speedScale + 4.0 - math.abs((o.oAngleVelPitch - (o.oMoveAnglePitch / 64)) / 0x1000)
+        gMarioStates[0].faceAngle.y = approach_s16_symmetric(gMarioStates[0].faceAngle.y, o.oFaceAngleYaw, 0xC00)
+        gMarioStates[0].action = ACT_HANG_VINE
+        gMarioStates[0].usedObj = o
+        calcMarioVinePos(o)
+        o.oAngleVelPitch = o.oAngleVelPitch - math.cos(gMarioStates[0].intendedYaw - o.oFaceAngleYaw) *
+            gMarioStates[0].intendedMag * speedScale * 0.5
+        o.oAngleVelPitch = o.oAngleVelPitch * 0.975
+        if gMarioStates[0].controller.buttonPressed & A_BUTTON ~= 0 then
+            o.oAction = 0
+            gMarioStates[0].action = ACT_TRIPLE_JUMP
+            play_sound(SOUND_MARIO_YAHOO_WAHA_YIPPEE + ((math.random(0, 4) * 0x10000)),
+                gMarioStates[0].marioObj.header.gfx.cameraToObject)
+            gMarioStates[0].vel.y = o.oAngleVelPitch * math.cos(o.oMoveAnglePitch - 0x4000) * 0.01581917687 * 2.5 + 25.0
+            gMarioStates[0].forwardVel = o.oAngleVelPitch * math.sin(o.oMoveAnglePitch - 0x4000) * 0.01581917687 * 2.5 *
+                1.2
+        end
+
+        if o.oOpacity == 0 then
+            if math.abs(o.oAngleVelPitch) > 0x400 then
+                o.oOpacity = o.oOpacity + 1
+                cur_obj_play_sound_2(SOUND_GENERAL_SWISH_AIR)
+            end
+        elseif o.oOpacity == 1 then
+            if math.abs(o.oAngleVelPitch) < 0x200 then
+                o.oOpacity = 0
+            end
+        end
+    end
+
+    cur_obj_init_animation(o.oBehParams2ndByte)
+
+    o.oArrowLiftUnk100 = o.oMoveAnglePitch
+    o.oAngleVelPitch = o.oAngleVelPitch - o.oMoveAnglePitch / 64
+    o.oAngleVelPitch = o.oAngleVelPitch * 0.99
+    o.oMoveAnglePitch = o.oMoveAnglePitch + o.oAngleVelPitch
+end
+
+-- Function to handle the "hang vine" action
+
+---@param m MarioState
+function act_hang_vine(m)
+    m.actionTimer = m.actionTimer + 1
+    m.unkB0 = -100
+    set_mario_animation(m, MARIO_ANIM_IDLE_ON_POLE)
+    play_sound_if_no_flag(m, SOUND_ACTION_HANGING_STEP, MARIO_ACTION_SOUND_PLAYED)
+    m.marioObj.header.gfx.pos = m.pos
+    m.marioObj.header.gfx.angle.x = (m.usedObj.oArrowLiftUnk100 * 5) / 5
+    m.marioObj.header.gfx.angle.y = m.faceAngle.y
+    m.marioObj.header.gfx.angle.z = 0
+    return 0
+end
+
+MODEL_WINDMILL2 = smlua_model_util_get_id("windmill2_geo")
+COL_WINDMILL2 = smlua_collision_util_get("windmill2_collision")
+
+function wingmillcode(o)
+    if o.oTimer == 0 then
+        cur_obj_scale(o.oBehParams2ndByte / 100)
+    end
+    o.collisionData = COL_WINDMILL2
+    o.oFaceAnglePitch = o.oFaceAnglePitch + 0x100 - o.oBehParams2ndByte / 8
+    load_object_collision_model()
+end
+
+
+
+hook_mario_action(ACT_HANG_VINE, {every_frame = act_hang_vine})
 
 function syncobjs_init(o)
     network_init_object(o, true, nil)

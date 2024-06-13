@@ -102,9 +102,31 @@ const BehaviorScript bhvPeachy[] = {
 
 const BehaviorScript bhvSpawnBlueOnGP[] = {
     BEGIN(OBJ_LIST_LEVEL),
+    ID(id_bhvNewId),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO),
     SET_FLOAT(oDrawingDistance, 32000),
     BEGIN_LOOP(),
     CALL_NATIVE(bhvbluespawenrosadhbgiuogdsiuzfghdsaiuzofgo),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSwingVein[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+   //LOAD_ANIMATIONS(oAnimations, swingVine_anims),
+    SET_FLOAT(oGraphYOffset, 1000),
+    BEGIN_LOOP(),
+        CALL_NATIVE(swingVein),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvWindMill2[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    SET_FLOAT(oDrawingDistance, 32000),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    //LOAD_COLLISION_DATA(windmill2_collision),
+    BEGIN_LOOP(),
+        CALL_NATIVE(wingmillcode),
     END_LOOP(),
 };
