@@ -26,6 +26,7 @@ function on_death(m, nonStandard)
     end
   end
 end
+ROMHACK = {}              -- table containing the romhack data we're using
 
 -- custom bubble action, with some code from the base game bubble action
 ACT_MH_BUBBLE_RETURN = allocate_mario_action(ACT_GROUP_CUTSCENE | ACT_FLAG_PAUSE_EXIT)
