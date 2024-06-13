@@ -187,7 +187,8 @@ function goround(o)
                 cur_obj_play_sound_1(SOUND_GENERAL_BOAT_ROCK)
             end
         end
-        o.oAngleVelYaw = o.oAngleVelYaw - ((math.floor(obj_angle_to_object(o, gMarioStates[0].marioObj) - o.oOpacity)) / 10)
+        o.oAngleVelYaw = o.oAngleVelYaw -
+        ((math.floor(obj_angle_to_object(o, gMarioStates[0].marioObj) - o.oOpacity)) / 10)
         o.oOpacity = obj_angle_to_object(o, gMarioStates[0].marioObj)
         if cur_obj_is_mario_on_platform() == 0 then
             o.oAction = 0
@@ -210,7 +211,7 @@ function goround(o)
     load_object_collision_model()
 end
 
-function checkRun(currentObj) 
+function checkRun(currentObj)
     if (currentObj.oDistanceToMario < 500.0) then
         currentObj.oBehParams2ndByte = obj_angle_to_object(gMarioStates[0].marioObj, currentObj);
         currentObj.oAction = 3;
@@ -272,7 +273,7 @@ function freebird(o)
         if o.oTimer == 0 then
             if obj_has_model_extended(o, E_MODEL_BIRDS) ~= 0 then
                 coin = spawn_object(o, E_MODEL_YELLOW_COIN, id_bhvMovingYellowCoin)
-                coin.oForwardVel = 0.67  * 10
+                coin.oForwardVel = 0.67 * 10
                 coin.oVelY = 0.67 * 40 + 20
                 coin.oMoveAngleYaw = math.random(0, 65536)
             end
@@ -309,7 +310,16 @@ function peachcode(o)
     bhv_bobomb_buddy_loop()
 end
 
+MODEL_GLOWSPOT = smlua_model_util_get_id("glowspot_geo")
 
+function bhvbluespawenrosadhbgiuogdsiuzfghdsaiuzofgo(o)
+    o.hitboxHeight = 70
+    o.hitboxRadius = 70
+    if gMarioStates[0].action == ACT_GROUND_POUND_LAND and obj_check_hitbox_overlap(o, gMarioStates[0].marioObj) then
+        spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200, gMarioStates[0].pos.z)
+        obj_mark_for_deletion(o)
+    end
+end
 
 function syncobjs_init(o)
     network_init_object(o, true, nil)

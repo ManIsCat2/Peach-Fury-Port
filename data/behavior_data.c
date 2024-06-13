@@ -99,3 +99,12 @@ const BehaviorScript bhvPeachy[] = {
         CALL_NATIVE(peachcode),
     END_LOOP(),
 };
+
+const BehaviorScript bhvSpawnBlueOnGP[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO),
+    SET_FLOAT(oDrawingDistance, 32000),
+    BEGIN_LOOP(),
+    CALL_NATIVE(bhvbluespawenrosadhbgiuogdsiuzfghdsaiuzofgo),
+    END_LOOP(),
+};
