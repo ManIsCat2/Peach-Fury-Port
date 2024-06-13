@@ -43,7 +43,7 @@ hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, n
 -- scrolling textures --
 ------------------------
 
-add_scroll_target(213, "hmc_dl_AAAAAAABackGround_003_mesh_layer_0_tri_8", 0, 55)
+add_scroll_target(213, "hmc_dl_AAAAAAABackGround_003_mesh_layer_0_vtx_8", 0, 55)
 
 --------------------
 -- general things --
