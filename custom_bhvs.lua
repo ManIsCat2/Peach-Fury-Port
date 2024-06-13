@@ -302,6 +302,15 @@ function freebird(o)
     end
 end
 
+MODEL_PEACHY = smlua_model_util_get_id("peachy_geo")
+
+function peachcode(o)
+    smlua_anim_util_set_animation(o, "anim_peachy_0")
+    bhv_bobomb_buddy_loop()
+end
+
+
+
 function syncobjs_init(o)
     network_init_object(o, true, nil)
 end
