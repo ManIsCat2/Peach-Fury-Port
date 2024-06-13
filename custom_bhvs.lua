@@ -11,7 +11,6 @@ end
 
 
 function goombastar(o)
-    network_init_object(o, true, nil)
     if (o.oBehParams == 6) then
         if (not obj_get_nearest_object_with_behavior_id(o, id_bhvGoomba)) then
             obj_mark_for_deletion(o)
@@ -303,3 +302,6 @@ function freebird(o)
     end
 end
 
+function syncobjs_init(o)
+    network_init_object(o, true, nil)
+end

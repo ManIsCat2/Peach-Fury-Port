@@ -1,6 +1,7 @@
 const BehaviorScript bhvGoombaStar[] = {
     BEGIN(OBJ_LIST_LEVEL),
     ID(id_bhvNewId),
+    CALL_NATIVE(syncobjs_init),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BEGIN_LOOP(),
         CALL_NATIVE(goombastar),
@@ -53,6 +54,7 @@ const BehaviorScript bhvScavengerHunt[] = {
 const BehaviorScript bhvMerry[] = {
     BEGIN(OBJ_LIST_SURFACE),
     ID(id_bhvNewId),
+    CALL_NATIVE(syncobjs_init),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     //LOAD_COLLISION_DATA(rotatething_collision),
     SET_FLOAT(oDrawingDistance, 15000),
@@ -65,6 +67,7 @@ const BehaviorScript bhvMerry[] = {
 const BehaviorScript bhvFreeBird[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     ID(id_bhvNewId),
+    CALL_NATIVE(syncobjs_init),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO
                     | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_ANIMATIONS(oAnimations, birds_seg5_anims_050009E8),
