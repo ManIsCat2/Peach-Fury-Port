@@ -276,10 +276,6 @@ function freebird(o)
                 coin.oForwardVel = 0.67  * 10
                 coin.oVelY = 0.67 * 40 + 20
                 coin.oMoveAngleYaw = math.random(0, 65536)
-            else
-                coin = spawn_object(o, E_MODEL_RED_COIN, id_bhvRedCoin)
-                coin.oFloorHeight = o.oFloorHeight
-                cur_obj_scale(1.5)
             end
         end
         o.oForwardVel = approach_f32_symmetric(o.oForwardVel, 50.0, 5.0)
