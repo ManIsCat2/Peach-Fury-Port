@@ -4,7 +4,7 @@ const GeoLayout hmc_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_DISPLAY_LIST(LAYER_FORCE, hmc_dl_AAAAAAABackGround_003_mesh_layer_0),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, hmc_dl_AAAABShadows_mesh_layer_5),
+		//GEO_DISPLAY_LIST(LAYER_TRANSPARENT, hmc_dl_AAAABShadows_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, hmc_dl_AAGeometry_001_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, hmc_dl_AAGeometry_002_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, hmc_dl_AAGeometry_003_mesh_layer_1),
