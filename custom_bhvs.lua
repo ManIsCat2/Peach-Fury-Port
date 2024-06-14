@@ -1,7 +1,7 @@
 ---@param parent Object
 ---@param model ModelExtendedId
 ---@param behaviorId BehaviorId
-local function spawn_object(parent, model, behaviorId)
+function spawn_object(parent, model, behaviorId)
     local obj = spawn_non_sync_object(behaviorId, model, 0, 0, 0, nil)
     if not obj then return nil end
 

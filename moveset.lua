@@ -7,6 +7,14 @@ local function limit_angle(a)
     return (a + 0x8000) % 0x10000 - 0x8000
 end
 
+local gMarioStateExtras = {}
+for i=0,(MAX_PLAYERS-1) do
+    gMarioStateExtras[i] = {}
+    local e = gMarioStateExtras[i]
+    e.rotAngle = 0
+end
+
+
 function act_wall_slide(m)
     if (m.input & INPUT_A_PRESSED) ~= 0 then
         m.vel.y = 52.0
@@ -39,14 +47,12 @@ function act_wall_slide(m)
 end
 
 function act_wall_slide_gravity(m)
-
     m.vel.y = m.vel.y - 1
 
     if m.vel.y < -30 then
         m.vel.y = -30
     end
 end
-
 
 function act_air_hit_wall(m)
     set_mario_action(m, ACT_WALL_SLIDE, 0)
@@ -90,7 +96,10 @@ local function before_set_mario_action(m, action)
     return convert_actions[action] ~= nil and convert_actions[action] or action
 end
 
+---@param m MarioState
 function on_mario_update(m)
+    local e = gMarioStateExtras[m.playerIndex]
+
     if m.action == ACT_GROUND_POUND_LAND and m.input & INPUT_A_PRESSED ~= 0 then
         set_mario_action(m, ACT_TRIPLE_JUMP, 0)
         m.vel.y = 70
@@ -102,6 +111,13 @@ function on_mario_update(m)
         m.vel.y = 24.0
         m.faceAngle.y = m.intendedYaw
         set_mario_action(m, ACT_DIVE, 0)
+    end
+
+    if m.action == ACT_TWIRLING and (m.controller.buttonDown & Z_TRIG) ~= 0 then
+        m.vel.y = m.vel.y + -50
+        m.particleFlags = m.particleFlags | PARTICLE_DUST
+        e.rotAngle = e.rotAngle + 10000
+        m.marioObj.header.gfx.angle.y = e.rotAngle
     end
 end
 
