@@ -7,11 +7,16 @@ local function limit_angle(a)
     return (a + 0x8000) % 0x10000 - 0x8000
 end
 
-local gMarioStateExtras = {}
+gMarioStateExtras = {}
 for i=0,(MAX_PLAYERS-1) do
     gMarioStateExtras[i] = {}
     local e = gMarioStateExtras[i]
     e.rotAngle = 0
+    e.saved_pos = {}
+    e.saved_pos.x = 0
+    e.saved_pos.y = 0
+    e.saved_pos.z = 0
+    e.saved_transition_timer = 0
 end
 
 
