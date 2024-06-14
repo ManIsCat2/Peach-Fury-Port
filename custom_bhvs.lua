@@ -456,6 +456,11 @@ function wingmillcode(o)
     load_object_collision_model()
 end
 
+MODEL_SHIPWINGS = smlua_model_util_get_id("shipwings_geo")
+
+function shipwingcode(o)
+    smlua_anim_util_set_animation(o,"anim_rotate_shipwing")
+end
 
 
 hook_mario_action(ACT_HANG_VINE, {every_frame = act_hang_vine})

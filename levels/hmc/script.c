@@ -143,7 +143,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(0, -6889, -3125, -3120, 0, 90, 0, (0 << 24) | (1), bhvHiddenObject),
 		OBJECT(0, -6889, -2925, -2320, 0, 90, 0, (0 << 24) | (1), bhvHiddenObject),
 		// MODEL ID 0X44
-		OBJECT(MODEL_BBARREL, 7724, -2660, 7391, 0, -95, 0, 0x00000000, bhvShipWings),
+		OBJECT(MODEL_SHIPWINGS, 7724, -2660, 7391, 0, -95, 0, 0x00000000, bhvShipWings),
 		//end
 		OBJECT(MODEL_BBARREL, 8175, -2210, 7079, 0, -180, 0, 0x00000000, bhvBbarrel),
 		OBJECT(MODEL_BBARREL, 8175, -2210, 7441, 0, -180, 0, 0x00000000, bhvBbarrel),

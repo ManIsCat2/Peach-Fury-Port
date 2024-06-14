@@ -130,3 +130,14 @@ const BehaviorScript bhvWindMill2[] = {
         CALL_NATIVE(wingmillcode),
     END_LOOP(),
 };
+
+const BehaviorScript bhvShipWings[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    SET_FLOAT(oDrawingDistance, 32000),
+    //LOAD_ANIMATIONS(oAnimations, shipwings_anims),
+    //ANIMATE(0),
+    BEGIN_LOOP(),
+    CALL_NATIVE(shipwingcode),
+    END_LOOP(),
+};
