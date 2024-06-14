@@ -123,6 +123,7 @@ const BehaviorScript bhvSwingVein[] = {
 
 const BehaviorScript bhvWindMill2[] = {
     BEGIN(OBJ_LIST_SURFACE),
+    ID(id_bhvNewId),
     SET_FLOAT(oDrawingDistance, 32000),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     //LOAD_COLLISION_DATA(windmill2_collision),
@@ -133,11 +134,23 @@ const BehaviorScript bhvWindMill2[] = {
 
 const BehaviorScript bhvShipWings[] = {
     BEGIN(OBJ_LIST_LEVEL),
+    ID(id_bhvNewId),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     SET_FLOAT(oDrawingDistance, 32000),
     //LOAD_ANIMATIONS(oAnimations, shipwings_anims),
     //ANIMATE(0),
     BEGIN_LOOP(),
     CALL_NATIVE(shipwingcode),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCheckpointFlag[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    ID(id_bhvNewId),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    //LOAD_ANIMATIONS(oAnimations, goomflagg_geo_anims),
+    //ANIMATE(0),
+        CALL_NATIVE(scaleByParam2),
+    BEGIN_LOOP(),
     END_LOOP(),
 };

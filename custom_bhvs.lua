@@ -462,6 +462,11 @@ function shipwingcode(o)
     smlua_anim_util_set_animation(o,"anim_rotate_shipwing")
 end
 
+function scaleByParam2(o)
+    cur_obj_scale(o.oBehParams2ndByte / 100.0 + 1.0)
+    smlua_anim_util_set_animation(o, "anim_flag_checkpoint")
+end
+
 
 hook_mario_action(ACT_HANG_VINE, {every_frame = act_hang_vine})
 

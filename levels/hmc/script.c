@@ -31,6 +31,10 @@ const LevelScript level_hmc_entry[] = {
 	LOAD_MODEL_FROM_GEO(0x16, warp_pipe_geo),
 	LOAD_MODEL_FROM_GEO(0xC0, goomba_geo),
 	LOAD_MODEL_FROM_GEO(0xF6, bitpipe_geo),
+	LOAD_MODEL_FROM_GEO(0x35, goomflagg_geo), 
+	LOAD_MODEL_FROM_GEO(0x36, peachflag_geo), 
+	LOAD_MODEL_FROM_GEO(0x41, chuckflag_geo), 
+	LOAD_MODEL_FROM_GEO(0x47, bowserflag_geo), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
