@@ -216,7 +216,6 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_8BIT_GOOMBA, 119, -372, 2703, 0, -180, 0, (0 << 16) | (1), id_bhvGoomba),
 		OBJECT(MODEL_8BIT_GOOMBA, -78, -372, 3334, 0, -180, 0, (0 << 16) | (1), id_bhvGoomba),
 		OBJECT(MODEL_8BIT_GOOMBA, -285, 378, 4533, 0, -180, 0, (0 << 16) | (1), id_bhvGoomba),
-		OBJECT(0, -250, 628, 3686, 0, 90, 0, (0x0B << 16), bhvCamForce),
 		TERRAIN(hmc_area_2_collision),
 		MACRO_OBJECTS(hmc_area_2_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, 0),
