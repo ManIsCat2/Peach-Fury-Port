@@ -23,7 +23,7 @@ gServerSettings.stayInLevelAfterStar = 1
 -----------------
 
 audio_0A = audio_stream_load("0A_domeL.mp3")
---audio_02 = audio_stream_load("02_stardanceleft.mp3")
+audio_02 = audio_stream_load("02_stardanceleft.mp3")
 --audio_1C = audio_sample_load("1C.mp3")
 audio_stream_set_looping(audio_0A, true)
 audio_stream_play(audio_0A, true, 1)
@@ -68,7 +68,6 @@ MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 played = false
 
 function update()
-
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
     for_each_object_with_behavior(id_bhvWarpPipe,
         function(o)
@@ -78,4 +77,18 @@ function update()
         end)
 end
 
+function on_dialog(d)
+    if d == DIALOG_014 then
+        return false
+    end
+end
+
+function mario_update(m)
+    if m.actionTimer < 80 and m.action == ACT_STAR_DANCE_NO_EXIT then
+        audio_stream_play(audio_02, false, 1)
+    end
+end
+
 hook_event(HOOK_UPDATE, update)
+hook_event(HOOK_MARIO_UPDATE, mario_update)
+hook_event(HOOK_ON_DIALOG, on_dialog)
