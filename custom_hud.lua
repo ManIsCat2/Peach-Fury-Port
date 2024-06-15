@@ -1,9 +1,6 @@
 local coinx = 322+60 + 15
 
 function render_stars_and_coin()
-    -- World Star Counter
-
-
     djui_hud_render_texture(gTextures.star, 8, 4, 1, 1)
     djui_hud_print_text("@", 24, 4, 1)
     djui_hud_print_text(tostring(gMarioStates[0].numStars), 40, 4, 1)
