@@ -68,7 +68,6 @@ MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 played = false
 
 function update()
-    hud_hide()
 
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
     for_each_object_with_behavior(id_bhvWarpPipe,
