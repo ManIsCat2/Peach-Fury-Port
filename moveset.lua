@@ -81,6 +81,7 @@ function act_air_hit_wall(m)
 
     m.faceAngle.y = limit_angle(m.faceAngle.y + 0x8000)
     m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
+    m.vel.y = 0
     set_mario_action(m, ACT_WALL_SLIDE, 0)
 
     --! Missing return statement (in original C code). The returned value is the result of the call
