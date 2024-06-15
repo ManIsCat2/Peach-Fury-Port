@@ -8,7 +8,7 @@ end
 
 function save_pos_update(m)
     local e = gMarioStateExtras[m.playerIndex]
-    m.peakHeight = -1000000
+    m.peakHeight = m.pos.y
     if m.playerIndex ~= 0 then return end
     if m.floor.type ~= SURFACE_DEEP_QUICKSAND then
         if m.action == ACT_IDLE or m.action == ACT_WALKING then
