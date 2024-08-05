@@ -13,7 +13,6 @@ local audios = {
     { course = COURSE_HMC, audio = audio_0A, area = 1 },
     { course = COURSE_HMC, audio = audio_0B, area = 2 },
     { course = COURSE_HMC, audio = audio_0C, area = 3 },
-    --{ course = COURSE_BOB, audio = audio_02,    area = 2 },
 }
 
 function audio_stop_all()

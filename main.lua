@@ -18,12 +18,6 @@ gLevelValues.fixCollisionBugsPickBestWall = true
 
 gServerSettings.stayInLevelAfterStar = 1
 
------------------
--- "sequences" --
------------------
-
---audio_1C = audio_sample_load("1C.mp3")
-
 ------------------
 -- bhv override --
 ------------------
