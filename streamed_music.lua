@@ -3,10 +3,12 @@ audio_0A = audio_stream_load("0A_domeL.mp3")
 audio_0B = audio_stream_load("0B_realBrushWoods.mp3")
 audio_0C = audio_stream_load("0C_YoshiVillage.mp3")
 
+def_audio_vol = 0.5
+
 ---@param audio ModAudio
 local function play_seq_streamed(audio)
     audio_stream_set_looping(audio, true)
-    audio_stream_play(audio, true, 1)
+    audio_stream_play(audio, true, def_audio_vol)
 end
 
 local audios = {
@@ -42,7 +44,7 @@ function streamed_loop()
             if is_game_paused() then
                 audio_stream_set_volume(audios[i].audio, 0.3)
             else
-                audio_stream_set_volume(audios[i].audio, 1)
+                audio_stream_set_volume(audios[i].audio, def_audio_vol)
             end
         end
     end

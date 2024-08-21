@@ -1,0 +1,9 @@
+extern const GeoLayout cloudchase[];
+extern Lights1 cloudchase_f3dlite_material_004_lights;
+extern u8 cloudchase_cloudchase_dsg_ci8_003_rgba16_ci8[];
+extern u8 cloudchase_cloudchase_dsg_ci8_003_rgba16_pal_rgba16[];
+extern Vtx cloudchase_cloudchase_Plane_mesh_mesh_mesh_layer_4_vtx_0[585];
+extern Gfx cloudchase_cloudchase_Plane_mesh_mesh_mesh_layer_4_tri_0[];
+extern Gfx mat_cloudchase_f3dlite_material_004[];
+extern Gfx mat_revert_cloudchase_f3dlite_material_004[];
+extern Gfx cloudchase_cloudchase_Plane_mesh_mesh_mesh_layer_4[];

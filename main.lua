@@ -1,5 +1,5 @@
 -- name: \\#FFC0CB\\Peach's Fury
--- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat.\n\n\Actual Romhack by Kaze and legendofzeina.
+-- description: Romhack Port.\n\Made by I'mYourCat and ThePerfectMario64.\n\n\Actual Romhack by Kaze and legendofzeina.
 -- incompatible: romhack
 
 ------------------
@@ -11,12 +11,14 @@ gLevelValues.exitCastleLevel = LEVEL_HMC
 gLevelValues.disableActs = true
 gLevelValues.fixCollisionBugs = true
 gLevelValues.fixCollisionBugsPickBestWall = true
+gLevelValues.useGlobalStarIds = true
 
 -------------------
 -- server values --
 -------------------
 
 gServerSettings.stayInLevelAfterStar = 1
+gServerSettings.skipIntro = true
 
 ------------------
 -- bhv override --
@@ -75,7 +77,7 @@ end
 
 function mario_update(m)
     if m.actionTimer < 80 and m.action == ACT_STAR_DANCE_NO_EXIT then
-        audio_stream_play(audio_02, false, 1)
+        audio_stream_play(audio_02, false, def_audio_vol)
     end
 end
 
