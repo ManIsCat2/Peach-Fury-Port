@@ -1,5 +1,5 @@
 -- name: \\#FFC0CB\\Peach's Fury
--- description: Romhack Port.\n\Made by PerfectMario64 and I'mYourCat.\n\Thanks to Blocky for MS Stars.\n\n\Actual Romhack by Kaze and legendofzeina.
+-- description: Romhack Port.\n\Made by I'mYourCat and ThePerfectMario64.\n\n\Actual Romhack by Kaze and legendofzeina.
 -- incompatible: romhack
 
 ------------------
@@ -11,22 +11,14 @@ gLevelValues.exitCastleLevel = LEVEL_HMC
 gLevelValues.disableActs = true
 gLevelValues.fixCollisionBugs = true
 gLevelValues.fixCollisionBugsPickBestWall = true
+gLevelValues.useGlobalStarIds = true
 
 -------------------
 -- server values --
 -------------------
 
 gServerSettings.stayInLevelAfterStar = 1
-
------------------
--- "sequences" --
------------------
-
-audio_0A = audio_stream_load("0A_domeL.mp3")
---audio_02 = audio_stream_load("02_stardanceleft.mp3")
---audio_1C = audio_sample_load("1C.mp3")
-audio_stream_set_looping(audio_0A, true)
-audio_stream_play(audio_0A, true, 1)
+gServerSettings.skipIntro = true
 
 ------------------
 -- bhv override --
@@ -39,9 +31,17 @@ end
 
 hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, nil)
 
+------------------------
+-- scrolling textures --
+------------------------
+
+add_scroll_target(213, "hmc_dl_AAAAAAABackGround_003_mesh_layer_0_vtx_8", 0, 55)
+
 --------------------
 -- general things --
 --------------------
+
+gMarioStates[0].numLives = 99
 
 local function for_each_object_with_behavior(behavior, func) --* function by Isaac
     local o = obj_get_first_with_behavior_id(behavior)
@@ -60,8 +60,6 @@ MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 played = false
 
 function update()
-    hud_hide()
-
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
     for_each_object_with_behavior(id_bhvWarpPipe,
         function(o)
@@ -71,4 +69,18 @@ function update()
         end)
 end
 
+function on_dialog(d)
+    if d == DIALOG_014 then
+        return false
+    end
+end
+
+function mario_update(m)
+    if m.actionTimer < 80 and m.action == ACT_STAR_DANCE_NO_EXIT then
+        audio_stream_play(audio_02, false, def_audio_vol)
+    end
+end
+
 hook_event(HOOK_UPDATE, update)
+hook_event(HOOK_MARIO_UPDATE, mario_update)
+hook_event(HOOK_ON_DIALOG, on_dialog)

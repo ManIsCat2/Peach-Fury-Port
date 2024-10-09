@@ -50,3 +50,25 @@ You can press B\
 during a groundpound\
 to do a big dive\
 in any direction!"))
+
+smlua_text_utils_dialog_replace(DIALOG_008, 1, 5, 30, 200, ("At least you paid\
+your debt!\
+But you're still not\
+off the hook!\
+\
+Before I forgive you,\
+you need to go and\
+subscribe to\
+Kaze Emanuar!!\
+Teehee :)"))
+
+smlua_text_utils_dialog_replace(DIALOG_006, 1, 5, 30, 200, ("Mario, you lard!\
+You really got\
+wasted and used up\
+all my money to order\
+pizza and pasta!\
+You're in debt,\
+little man!\
+You owe me...\
+at least 25 stars!\
+Buzz off and work!"))
