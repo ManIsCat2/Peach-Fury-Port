@@ -13,6 +13,12 @@ gLevelValues.fixCollisionBugs = true
 gLevelValues.fixCollisionBugsPickBestWall = true
 gLevelValues.useGlobalStarIds = true
 
+------------------
+--- bhv values ---
+------------------
+
+gBehaviorValues.ShowStarMilestones = false
+
 -------------------
 -- server values --
 -------------------
@@ -69,18 +75,17 @@ function update()
         end)
 end
 
-function on_dialog(d)
-    if d == DIALOG_014 then
-        return false
-    end
-end
-
 function mario_update(m)
-    if m.actionTimer < 80 and m.action == ACT_STAR_DANCE_NO_EXIT then
-        audio_stream_play(audio_02, false, def_audio_vol)
+    m.numLives = 99
+    if m.actionTimer < 80 then
+        if m.action == ACT_STAR_DANCE_EXIT or m.action == ACT_STAR_DANCE_NO_EXIT or m.action == ACT_STAR_DANCE_WATER then
+            if m.playerIndex == 0 then
+                play_music(SEQ_PLAYER_ENV, 0, 0);
+            end
+            audio_stream_play(audio_02, false, 1)
+        end
     end
 end
 
 hook_event(HOOK_UPDATE, update)
 hook_event(HOOK_MARIO_UPDATE, mario_update)
-hook_event(HOOK_ON_DIALOG, on_dialog)

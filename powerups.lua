@@ -18,6 +18,11 @@ characterPowerupModels = {
     [CT_WALUIGI] = { cloud = E_MODEL_cloud_MARIO, cat = nil, bee = nil },
 }
 
+powerupStates = {
+    [NORMAL] = { modelId = nil },
+    [CLOUD] = { modelId = nil },
+}
+
 -- Powerup States, to add more powerups here, you must first add them to the enum and assign a number
 function get_character_model(m)
     if m.playerIndex ~= 0 then return end
