@@ -97,13 +97,19 @@ function mario_update(m)
             audio_stream_play(audio_02, false, 1)
         end
     end
+
+    if m.prevAction == ACT_STAR_DANCE_NO_EXIT then
+        if m.playerIndex == 0 then
+            gDecAlphaStar = true
+            gIncAlphaStar = false
+        end
+    end
 end
 
 function on_int(m, o)
     if o.behavior == get_behavior_from_id(id_bhvStar) then
         gStarName = starTexts[o.oBehParams >> 24][1]
-        gStarNameAlpha = 255
-        djui_chat_message_create("setted" .. gStarNameAlpha)
+        gIncAlphaStar = true
     end
 end
 

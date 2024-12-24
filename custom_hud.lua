@@ -56,7 +56,8 @@ starTexts = {
 
 gStarNameAlpha = 0
 gStarName = ""
-
+gDecAlphaStar = false
+gIncAlphaStar = false
 
 function render_stars_and_coin()
     local m = gMarioStates[0]
@@ -75,14 +76,21 @@ function render_stars_and_coin()
 end
 
 function render_star_name()
-    if (gStarNameAlpha > 0) then
+    if (gStarNameAlpha > 0 and gDecAlphaStar) then
         gStarNameAlpha = gStarNameAlpha - 3
     end
+
+    if (gStarNameAlpha < 255 and gIncAlphaStar) then
+        gStarNameAlpha = gStarNameAlpha + 3
+    end
+
+    if gStarNameAlpha == 0 then gDecAlphaStar = false end
+
     djui_hud_set_font(FONT_NORMAL)
     djui_hud_set_color(255, 255, 255, gStarNameAlpha)
     local starscale = 1
-    djui_hud_print_text(gStarName, (djui_hud_get_screen_width()/2) + (djui_hud_measure_text(gStarName) -djui_hud_get_screen_width()/2 + 20 ) * starscale,
-    djui_hud_get_screen_height() / 2 + 30, starscale)
+    djui_hud_print_text(gStarName, djui_hud_get_screen_width() * 0.5 - djui_hud_measure_text(gStarName) * starscale * 0.5,
+        djui_hud_get_screen_height() / 2 + 30, starscale)
 end
 
 function on_behind_hud()
