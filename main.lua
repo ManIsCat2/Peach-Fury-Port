@@ -1,6 +1,7 @@
 -- name: \\#FFC0CB\\Peach's Fury
 -- description: Romhack Port.\n\Made by I'mYourCat and ThePerfectMario64.\n\n\Actual Romhack by Kaze and legendofzeina.
 -- incompatible: romhack
+-- pausable: false
 
 ------------------
 -- level values --
@@ -93,8 +94,8 @@ function mario_update(m)
         if m.action == ACT_STAR_DANCE_EXIT or m.action == ACT_STAR_DANCE_NO_EXIT or m.action == ACT_STAR_DANCE_WATER then
             if m.playerIndex == 0 then
                 play_music(SEQ_PLAYER_ENV, 0, 0);
+                audio_stream_play(audio_02, false, def_audio_vol)
             end
-            audio_stream_play(audio_02, false, 1)
         end
     end
 

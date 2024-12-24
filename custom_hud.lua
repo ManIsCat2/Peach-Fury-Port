@@ -110,6 +110,9 @@ function on_behind_hud()
     end
     if _G.OmmEnabled and _G.OmmApi.omm_get_setting(gMarioStates[0], "hud") == 0 or not _G.OmmEnabled then
         render_stars_and_coin()
+    end
+
+    if not _G.OmmEnabled then
         render_star_name()
     end
 end

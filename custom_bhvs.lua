@@ -41,6 +41,7 @@ local vertdist = 80.0
 MODEL_BOUNCY_FLOWER = smlua_model_util_get_id("bouncyflower_geo")
 
 function bounceyflower(o)
+    o.oInteractType = INTERACT_IGLOO_BARRIER
     smlua_anim_util_set_animation(o, "anim_spin_flower")
     o.oFaceAngleYaw = o.oFaceAngleYaw + 0x800
     local lateral_dist = lateral_dist_between_objects(o, gMarioStates[0].marioObj)

@@ -1,3 +1,5 @@
+-------from , Extended moveset!
+
 ACT_WALL_SLIDE = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_MOVING |
     ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 
