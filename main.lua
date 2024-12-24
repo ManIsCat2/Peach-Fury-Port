@@ -18,6 +18,7 @@ gLevelValues.useGlobalStarIds = true
 ------------------
 
 gBehaviorValues.ShowStarMilestones = false
+gBehaviorValues.ShowStarDialog = false
 
 -------------------
 -- server values --
@@ -35,7 +36,17 @@ function breakable_box_init(o)
     o.oCollisionDistance = 1000
 end
 
+function breakable_box_loop(o)
+    o.oInteractType = 0
+    if (o.oBehParams & 1) ~= 0 then
+        o.header.gfx.scale.y = 4;
+        o.header.gfx.scale.x = 4;
+        o.oCollisionDistance = 3000
+    end
+end
+
 hook_behavior(id_bhvBreakableBox, OBJ_LIST_SURFACE, false, breakable_box_init, nil)
+hook_behavior(id_bhvHiddenObject, OBJ_LIST_SURFACE, false, nil, breakable_box_loop)
 
 ------------------------
 -- scrolling textures --
@@ -66,6 +77,7 @@ MODEL_8BIT_GOOMBA = smlua_model_util_get_id("goomba_blue_geo")
 played = false
 
 function update()
+    if gStarNameAlpha < 0 then gStarNameAlpha = 0 end
     for_each_object_with_behavior(id_bhvHiddenStarTrigger, function(o) o.oFaceAngleYaw = o.oFaceAngleYaw + 0x600 end)
     for_each_object_with_behavior(id_bhvWarpPipe,
         function(o)
@@ -87,5 +99,14 @@ function mario_update(m)
     end
 end
 
+function on_int(m, o)
+    if o.behavior == get_behavior_from_id(id_bhvStar) then
+        gStarName = starTexts[o.oBehParams >> 24][1]
+        gStarNameAlpha = 255
+        djui_chat_message_create("setted" .. gStarNameAlpha)
+    end
+end
+
 hook_event(HOOK_UPDATE, update)
 hook_event(HOOK_MARIO_UPDATE, mario_update)
+hook_event(HOOK_ALLOW_INTERACT, on_int)

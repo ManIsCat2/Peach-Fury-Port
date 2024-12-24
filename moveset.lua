@@ -8,7 +8,7 @@ local function limit_angle(a)
 end
 
 gMarioStateExtras = {}
-for i=0,(MAX_PLAYERS-1) do
+for i = 0, (MAX_PLAYERS - 1) do
     gMarioStateExtras[i] = {}
     local e = gMarioStateExtras[i]
     e.rotAngle = 0
@@ -60,6 +60,7 @@ function act_wall_slide_gravity(m)
 end
 
 function act_air_hit_wall(m)
+    m.vel.y = 0
     set_mario_action(m, ACT_WALL_SLIDE, 0)
     if m.heldObj ~= 0 then
         mario_drop_held_object(m)
@@ -111,7 +112,6 @@ function on_mario_update(m)
         m.vel.y = 70
     end
     m.hurtCounter = 0
-    m.health = 0x880
     if m.action == ACT_GROUND_POUND and m.input & INPUT_B_PRESSED ~= 0 then
         m.forwardVel = 48.0
         m.vel.y = 24.0

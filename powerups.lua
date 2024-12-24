@@ -34,7 +34,23 @@ function get_character_model(m)
     }
 end
 
-hook_event(HOOK_MARIO_UPDATE, get_character_model)
+--- Charselect Model fix. By OneCalledRPG
+function cs_model_set(m)
+    if _G.charSelectExists then
+        if _G.charSelect.character_get_current_number() == 1 then
+            get_character_model(m)
+        else
+            powerupStates = {
+                [NORMAL] = { modelId = nil },
+                [CLOUD] = { modelId = nil },
+            }
+        end
+    else
+        get_character_model(m)
+    end
+end
+
+hook_event(HOOK_MARIO_UPDATE, cs_model_set)
 
 -- Powerup Model Functions --
 

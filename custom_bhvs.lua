@@ -174,9 +174,10 @@ COL_ROTATETHING = smlua_collision_util_get("rotatething_collision")
 
 ---@param o Object
 function goround(o)
+    local gMarioState = nearest_mario_state_to_object(o)
     o.collisionData = COL_ROTATETHING
     if o.oAction == 0 then
-        o.oOpacity = obj_angle_to_object(o, gMarioStates[0].marioObj)
+        o.oOpacity = obj_angle_to_object(o, gMarioState.marioObj)
         if cur_obj_is_mario_on_platform() == 1 then
             o.oAction = 1
         end
@@ -188,15 +189,15 @@ function goround(o)
             end
         end
         o.oAngleVelYaw = o.oAngleVelYaw -
-            ((math.floor(obj_angle_to_object(o, gMarioStates[0].marioObj) - o.oOpacity)) / 10)
-        o.oOpacity = obj_angle_to_object(o, gMarioStates[0].marioObj)
+            ((math.floor(obj_angle_to_object(o, gMarioState.marioObj) - o.oOpacity)) / 10)
+        o.oOpacity = obj_angle_to_object(o, gMarioState.marioObj)
         if cur_obj_is_mario_on_platform() == 0 then
             o.oAction = 0
         end
         if math.abs(o.oMacroUnk108) > 10000 then
             if o.oMacroUnk10C == 0 then
                 o.oMacroUnk10C = 1
-                spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200, gMarioStates[0].pos.z)
+                spawn_default_star(gMarioState.pos.x, gMarioState.pos.y + 200, gMarioState.pos.z)
             end
         end
     end

@@ -23,7 +23,7 @@ function save_pos_update(m)
         e.saved_transition_timer = e.saved_transition_timer + 1
         if e.saved_transition_timer > 20 then
             if m.playerIndex == 0 then
-                play_transition(WARP_TRANSITION_FADE_FROM_MARIO, 30, 0, 0, 0)
+                play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 40, 0, 0, 0)
             end
             m.vel.y = 0
             mario_set_forward_vel(m, 0)

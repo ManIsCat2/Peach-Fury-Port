@@ -11,7 +11,7 @@ function bhv_cloud_init(obj)
     --obj.oFriction = 0.999;
     obj.oBuoyancy = 1.5;
     obj.oOpacity = 0xFF;
-    network_init_object(obj, true, nil)
+    --network_init_object(obj, true, nil)
 end
 
 mark_obj_for_deletion = obj_mark_for_deletion
@@ -22,7 +22,7 @@ local cloudcount = 0
 function bhv_cloud_loop(obj)
     object_step()
 
-    local mstatesOBJ = nearest_player_to_object(obj)
+    local mstatesOBJ = gMarioStates[0].marioObj
     if (obj_check_hitbox_overlap(mstatesOBJ, obj)) then
         obj_mark_for_deletion(obj)
         gPlayerSyncTable[network_local_index_from_global(mstatesOBJ.globalPlayerIndex)].powerup = CLOUD
