@@ -334,6 +334,11 @@ MODEL_PEACHY = smlua_model_util_get_id("peachy_geo")
 function peachcode(o)
     smlua_anim_util_set_animation(o, "anim_peachy_0")
     bhv_bobomb_buddy_loop()
+
+    if save_file_get_total_star_count(get_current_save_file_num() - 1, 0, COURSE_MAX - 1) >= 25 then
+        o.oBehParams = (8 << 16) & 0XFF
+        o.oBehParams2ndByte = 8
+    end
 end
 
 MODEL_GLOWSPOT = smlua_model_util_get_id("glowspot_geo")
