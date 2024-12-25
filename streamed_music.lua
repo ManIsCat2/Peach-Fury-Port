@@ -56,16 +56,6 @@ function streamed_loop()
     end
 end
 
-function audio_fadeout_start_fadeinmusic(timer, timer2, audioDie, audioAlive)
-    timer = approach_f32_symmetric(timer, 0, 0.1)
-    audio_stream_set_volume(audioDie, timer)
-    --djui_chat_message_create("timer".. timer)
-
-    timer2 = approach_f32_symmetric(timer2, def_audio_vol, 0.1)
-    audio_stream_set_volume(audioAlive, timer2)
-    -- djui_chat_message_create("timer2".. timer2)
-end
-
 audio_stream_set_looping(audio_0D, true)
 audio_stream_play(audio_0D, true, def_audio_vol)
 audio_stream_set_looping(audio_0A, true)
@@ -84,14 +74,15 @@ function streamed_mario_update(m)
             if m.pos.y >= -2759 then
                 --audio_stream_set_position(audio_0A, 0)
                 sNORMALHUBVol = approach_f32_symmetric(sNORMALHUBVol, 0, FADESPEED)
-                if not is_game_paused() then
+                if  not is_game_paused() or m.action ~= ACT_STAR_DANCE_NO_EXIT then
                     sNORMALHUBSKYVol = approach_f32_symmetric(sNORMALHUBSKYVol, def_audio_vol, FADESPEED)
                 else
                     sNORMALHUBSKYVol = approach_f32_symmetric(sNORMALHUBSKYVol, PAUSEDSO, FADESPEED)
                 end
             else
                 --audio_stream_set_position(audio_0D, 0)
-                if not is_game_paused() then
+
+                if not is_game_paused() or m.action ~= ACT_STAR_DANCE_NO_EXIT then
                     sNORMALHUBVol = approach_f32_symmetric(sNORMALHUBVol, def_audio_vol, FADESPEED)
                 else
                     sNORMALHUBVol = approach_f32_symmetric(sNORMALHUBVol, PAUSEDSO, FADESPEED)

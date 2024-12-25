@@ -9,9 +9,33 @@ function spawn_object(parent, model, behaviorId)
     return obj
 end
 
+local towerPos = { [0] = 1361, 861, 1111, 361, 611, -139, 111 }
+
 
 function goombastar(o)
-    if (o.oBehParams == 6) then
+    local gMarioState = nearest_mario_state_to_object(o)
+    --djui_chat_message_create("" .. o.oOpacity)
+    if (o.oBehParams & 0xFF) == 7 then
+        if gMarioState.pos.y == gMarioState.floorHeight then
+            -- if (gMarioState.floor.type) == 0xE0 then
+            if math.abs(gMarioState.floorHeight - towerPos[o.oOpacity]) < 50 then
+                o.oOpacity = o.oOpacity + 1
+                if o.oOpacity == 7 then
+                    obj_mark_for_deletion(o)
+                    spawn_default_star(gMarioState.pos.x, gMarioState.pos.y + 200,
+                        gMarioState.pos.z)
+                end
+            elseif math.abs(gMarioState.pos.y - (towerPos[o.oOpacity - 1] and towerPos[o.oOpacity - 1] or towerPos[o.oOpacity])) > 50 then
+                o.oOpacity = 0
+            end
+            --else
+            -- if not gMarioState.floor.object then
+            --o.oOpacity = 0
+            --end
+            --end
+        end
+    end
+    if (o.oBehParams2ndByte == 0 and (o.oBehParams >> 24) & 0xFF == 2) then
         if (not obj_get_nearest_object_with_behavior_id(o, id_bhvGoomba)) then
             obj_mark_for_deletion(o)
             spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200.0, gMarioStates[0].pos.z)
@@ -214,7 +238,7 @@ function goround(o)
 end
 
 function checkRun(currentObj)
-    if (currentObj.oDistanceToMario < 500.0) then
+    if (dist_between_objects(currentObj, nearest_player_to_object(currentObj)) < 500.0) then
         currentObj.oBehParams2ndByte = obj_angle_to_object(gMarioStates[0].marioObj, currentObj);
         currentObj.oAction = 3;
         cur_obj_play_sound_1(SOUND_GENERAL_BIRDS_FLY_AWAY);
@@ -317,8 +341,9 @@ MODEL_GLOWSPOT = smlua_model_util_get_id("glowspot_geo")
 function bhvbluespawenrosadhbgiuogdsiuzfghdsaiuzofgo(o)
     o.hitboxHeight = 70
     o.hitboxRadius = 70
-    if gMarioStates[0].action == ACT_GROUND_POUND_LAND and obj_check_hitbox_overlap(o, gMarioStates[0].marioObj) then
-        spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200, gMarioStates[0].pos.z)
+    if nearest_mario_state_to_object(o).action == ACT_GROUND_POUND_LAND and obj_check_hitbox_overlap(o, nearest_mario_state_to_object(o).marioObj) then
+        spawn_default_star(nearest_mario_state_to_object(o).pos.x, nearest_mario_state_to_object(o).pos.y + 200,
+        nearest_mario_state_to_object(o).pos.z)
         obj_mark_for_deletion(o)
     end
 end
@@ -361,7 +386,7 @@ function calcMarioVinePos(o)
     end
 end
 
-ACT_HANG_VINE =        allocate_mario_action(0x151 | ACT_FLAG_STATIONARY | ACT_FLAG_ON_POLE | ACT_FLAG_PAUSE_EXIT)
+ACT_HANG_VINE = allocate_mario_action(0x151 | ACT_FLAG_STATIONARY | ACT_FLAG_ON_POLE | ACT_FLAG_PAUSE_EXIT)
 
 MODEL_SWINGVINE = smlua_model_util_get_id("swingvine_geo")
 
@@ -461,7 +486,7 @@ end
 MODEL_SHIPWINGS = smlua_model_util_get_id("shipwings_geo")
 
 function shipwingcode(o)
-    smlua_anim_util_set_animation(o,"anim_rotate_shipwing")
+    smlua_anim_util_set_animation(o, "anim_rotate_shipwing")
 end
 
 function scaleByParam2(o)
@@ -469,8 +494,7 @@ function scaleByParam2(o)
     smlua_anim_util_set_animation(o, "anim_flag_checkpoint")
 end
 
-
-hook_mario_action(ACT_HANG_VINE, {every_frame = act_hang_vine})
+hook_mario_action(ACT_HANG_VINE, { every_frame = act_hang_vine })
 
 function syncobjs_init(o)
     network_init_object(o, true, nil)

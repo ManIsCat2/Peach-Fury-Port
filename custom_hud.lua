@@ -89,6 +89,7 @@ function render_star_name()
     djui_hud_set_font(FONT_NORMAL)
     djui_hud_set_color(255, 255, 255, gStarNameAlpha)
     local starscale = 1
+    --thankyou Squishy6094
     djui_hud_print_text(gStarName, djui_hud_get_screen_width() * 0.5 - djui_hud_measure_text(gStarName) * starscale * 0.5,
         djui_hud_get_screen_height() / 2 + 30, starscale)
 end

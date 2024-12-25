@@ -75,6 +75,7 @@ const BehaviorScript bhvFreeBird[] = {
                     /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
     ANIMATE(2),
     SET_HOME(),
+    CALL_NATIVE(syncobjs_init),
     BEGIN_LOOP(),
     //set scale randomly
     // move around a little bit, by doing small jumps
@@ -105,6 +106,7 @@ const BehaviorScript bhvSpawnBlueOnGP[] = {
     ID(id_bhvNewId),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO),
     SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(syncobjs_init),
     BEGIN_LOOP(),
     CALL_NATIVE(bhvbluespawenrosadhbgiuogdsiuzfghdsaiuzofgo),
     END_LOOP(),

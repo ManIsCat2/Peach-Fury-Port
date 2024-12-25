@@ -107,9 +107,16 @@ function mario_update(m)
     end
 end
 
+local starbhv = {
+    [id_bhvStar] = true,
+    [id_bhvSpawnedStar] = true,
+    [id_bhvSpawnedStarNoLevelExit] = true,
+    [id_bhvStarSpawnCoordinates] = true
+}
+
 function on_int(m, o)
-    if o.behavior == get_behavior_from_id(id_bhvStar) then
-        gStarName = starTexts[o.oBehParams >> 24][1]
+    if (starbhv[get_id_from_behavior(o.behavior)]) then
+        gStarName = starTexts[(o.oBehParams >> 24) & 0xFF][1]
         gIncAlphaStar = true
     end
 end
