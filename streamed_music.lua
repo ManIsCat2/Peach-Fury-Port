@@ -5,6 +5,7 @@ audio_0A = audio_stream_load("0A_domeL.mp3")
 audio_0B = audio_stream_load("0B_realBrushWoods.mp3")
 audio_0C = audio_stream_load("0C_YoshiVillage.mp3")
 audio_0D = audio_stream_load("0D_dinodinoL.mp3")
+audio_CAM = audio_sample_load("0A_cam.ogg")
 
 def_audio_vol = 0.43
 
@@ -74,7 +75,7 @@ function streamed_mario_update(m)
             if m.pos.y >= -2759 then
                 --audio_stream_set_position(audio_0A, 0)
                 sNORMALHUBVol = approach_f32_symmetric(sNORMALHUBVol, 0, FADESPEED)
-                if  not is_game_paused() or m.action ~= ACT_STAR_DANCE_NO_EXIT then
+                if not is_game_paused()  then
                     sNORMALHUBSKYVol = approach_f32_symmetric(sNORMALHUBSKYVol, def_audio_vol, FADESPEED)
                 else
                     sNORMALHUBSKYVol = approach_f32_symmetric(sNORMALHUBSKYVol, PAUSEDSO, FADESPEED)
@@ -82,7 +83,7 @@ function streamed_mario_update(m)
             else
                 --audio_stream_set_position(audio_0D, 0)
 
-                if not is_game_paused() or m.action ~= ACT_STAR_DANCE_NO_EXIT then
+                if not is_game_paused() then
                     sNORMALHUBVol = approach_f32_symmetric(sNORMALHUBVol, def_audio_vol, FADESPEED)
                 else
                     sNORMALHUBVol = approach_f32_symmetric(sNORMALHUBVol, PAUSEDSO, FADESPEED)
@@ -96,6 +97,13 @@ function streamed_mario_update(m)
     end
 end
 
+function fuckplaysound(s)
+    if s == SOUND_MENU_CAMERA_TURN or s == SOUND_MENU_CAMERA_ZOOM_OUT or s == SOUND_MENU_CAMERA_ZOOM_IN then
+        return audio_sample_play(audio_CAM, gMarioStates[0].pos, def_audio_vol)
+    end
+end
+
 hook_event(HOOK_UPDATE, streamed_loop)
+hook_event(HOOK_ON_PLAY_SOUND, fuckplaysound)
 hook_event(HOOK_MARIO_UPDATE, streamed_mario_update)
 hook_event(HOOK_ON_SYNC_VALID, streamed_init)
