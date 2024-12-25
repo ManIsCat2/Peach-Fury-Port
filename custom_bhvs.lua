@@ -130,11 +130,12 @@ MODEL_BBARREL = smlua_model_util_get_id("bbarrel_geo")
 
 function bbarrelcode(o)
     o.collisionData = smlua_collision_util_get("bbarrel_collision")
+    local gMarioState = nearest_mario_state_to_object(o)
     if o.oAction == 0 then
         if o.oTimer == 0 then
             o.oFaceAngleYaw = math.random(0, 65535)
         end
-        if cur_obj_is_mario_ground_pounding_platform() == 1 then
+        if gMarioState.action == ACT_GROUND_POUND_LAND and gMarioState.marioObj.platform == o then
             o.oAction = 1
             o.oTimer = 0
         end
@@ -164,20 +165,21 @@ function bbarrelcode(o)
     end
     load_object_collision_model()
 end
-
+---barel and this
 function scavengersign(o)
     local sign
+    local gMarioState = nearest_mario_state_to_object(o)
     if o.oAction == 0 then
-        if (gMarioStates[0].action == ACT_GROUND_POUND_LAND) and (o.oDistanceToMario < 1000) then
+        if (gMarioState.action == ACT_GROUND_POUND_LAND) and (o.oDistanceToMario < 1000) then
             if o.oBehParams & 0x00ff ~= 0 then
-                spawn_default_star(gMarioStates[0].pos.x, gMarioStates[0].pos.y + 200, gMarioStates[0].pos.z)
+                spawn_default_star(gMarioState.pos.x, gMarioState.pos.y + 200, gMarioState.pos.z)
                 obj_mark_for_deletion(o)
             else
                 sign = spawn_object(o, E_MODEL_WOODEN_SIGNPOST, id_bhvMessagePanel)
                 spawn_object(o, 0, id_bhvMistCircParticleSpawner)
                 sign.oBehParams2ndByte = o.oBehParams2ndByte
-                sign.oMoveAngleYaw = atan2s(o.oPosZ - gMarioStates[0].marioObj.oPosZ,
-                    o.oPosX - gMarioStates[0].marioObj.oPosX) + 0x8000
+                sign.oMoveAngleYaw = atan2s(o.oPosZ - gMarioState.marioObj.oPosZ,
+                    o.oPosX - gMarioState.marioObj.oPosX) + 0x8000
                 sign.oFaceAngleYaw = sign.oMoveAngleYaw
                 o.oAction = 1
                 sign.oPosY = sign.oPosY - 200

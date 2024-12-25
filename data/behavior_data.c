@@ -37,6 +37,7 @@ const BehaviorScript bhvBbarrel[] = {
     ID(id_bhvNewId),
     OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_FLOAT(oDrawingDistance, 32000),
+    CALL_NATIVE(syncobjs_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bbarrelcode),
     END_LOOP(),
@@ -46,6 +47,7 @@ const BehaviorScript bhvScavengerHunt[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     ID(id_bhvNewId),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(syncobjs_init),
     BEGIN_LOOP(),
     CALL_NATIVE(scavengersign),
     END_LOOP(),
@@ -67,7 +69,6 @@ const BehaviorScript bhvMerry[] = {
 const BehaviorScript bhvFreeBird[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     ID(id_bhvNewId),
-    CALL_NATIVE(syncobjs_init),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO
                     | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_ANIMATIONS(oAnimations, birds_seg5_anims_050009E8),
